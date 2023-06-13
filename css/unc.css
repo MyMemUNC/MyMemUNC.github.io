@@ -1,0 +1,17 @@
+.f-sofiasans {
+  font-family: 'Sofia Sans', sans-serif;
+}
+
+.f-oswald{
+  font-family: 'Oswald', sans-serif;
+}
+
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
