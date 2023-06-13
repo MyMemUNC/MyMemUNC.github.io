@@ -4,6 +4,7 @@
 
 .f-oswald{
   font-family: 'Oswald', sans-serif;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
 hr {
@@ -15,3 +16,8 @@ hr {
   border-style: inset;
   border-width: 1px;
 }
+
+.fs-96{
+  font-size: 96px;
+}
+
