@@ -14,13 +14,79 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Oswald:wght@500&family=Sofia+Sans:ital@1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
   <link rel="stylesheet" href="../../css/unc.css">
   <link rel="icon" href="../favicon.ico">
   
   <style>
   </style>
   
+<script>
+  var SortID = 0
+
+  function TableFilter() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[SortID];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+  function SearchTypeButton(type = "id") {
+    switch (type) {
+      case "id":
+        SortID = 0
+        break;
+      case "name":
+        SortID = 1
+        break;
+      case "category":
+        SortID = 2
+        break;
+    }
+    SortBy()
+    TableFilter()
+  }
+
+  function SortBy(){
+    function ButtonState(id="idbtn", state=false) {
+      state ? document.getElementById(id).classList.add('w3-flat-silver') : document.getElementById(id).classList.remove('w3-flat-silver');
+    }
+    function ToggleButton(btntype) {
+        ButtonState("idbtn", btntype == 0);
+        ButtonState("namebtn", btntype == 1);
+        ButtonState("categorybtn", btntype == 2);
+    }
+    ToggleButton(SortID)
+
+    switch (SortID) {
+      case 0:
+        document.getElementById("myInput").placeholder='Search by ID';
+        break;
+      case 1:
+        document.getElementById("myInput").placeholder='Search by Name';
+        break;
+      case 2:
+        document.getElementById("myInput").placeholder='Search by Category';
+        break;
+    }
+  }
+</script>
+
 </head>
 
 <body>
@@ -55,13 +121,44 @@
 <!---->
 
 <div class="w3-padding-large f-sofiasans">
+
   <div class="" style="margin-left: 10%; margin-right: 10%;">
     <h2 class="f-oswald" style="margin-left: 1%;">Index</h2>
     <hr style="color: darkgray; margin-top: -0.5%;">
   </div>
-  
-    <div class="w3-container w3-main w3-center" style="margin-left: 10%;">
-  </div></div>
-</body>
 
+  <div class="" style="margin-left: 10%; margin-right: 10%;">
+    <input class="w3-input w3-border w3-padding" type="text" placeholder="Search by ID" id="myInput" onkeyup="TableFilter()">
+  </div>
+  
+  <div class="w3-container w3-main w3-row w3-center w3-padding" style="margin-left: 9.1%; margin-right: 9.1%; font-size: 24px; font-family: 'Courier New', Courier, monospace;">
+    <div class="w3-light-gray w3-col l4 m4 s4" onclick="SearchTypeButton('id')" id="idbtn"><b>By ID</b></div>
+    <div class="w3-light-gray w3-col l4 m4 s4" onclick="SearchTypeButton('name')" id="namebtn"><b>By Name</b></div>
+    <div class="w3-light-gray w3-col l4 m4 s4" onclick="SearchTypeButton('category')" id="categorybtn"><b>By Category</b></div>
+  </div>
+
+  <div class="w3-container w3-main w3-row w3-center w3-padding w3-responsive" style="margin-left: 9.1%; margin-right: 9.1%;">
+    <table class="w3-table w3-striped w3-bordered" id="myTable">
+      <tr>
+        <th><u>ID</u></th>
+        <th><u>Name</u></th>
+        <th class="w3-right-align"><u>Category</u></th>
+      </tr>
+      <tr onclick="document.location = '';">
+        <td>A-N-013</td>
+        <td>Tyrant Entertainment</td>
+        <td class="w3-right-align">Items</td>
+      </tr>
+      <tr>
+        <td>A-L-024</td>
+        <td>Only My Precious Rose</td>
+        <td class="w3-right-align">Plants</td>
+      </tr>
+    </table>
+    
+
+  </div>
+
+</div>
+</body>
 </html>
