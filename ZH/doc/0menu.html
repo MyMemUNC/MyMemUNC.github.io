@@ -7,7 +7,7 @@
 <html>
 
 <head>
-  <title>Database I - UNC Foundation</title>
+  <title>資料庫 I - UNC基金會</title>
   <meta charset="UTF-8">
   <meta name="description" content="TRPG">
   <meta name="keywords" content="HTML, CSS, JavaScript, ICT">
@@ -75,13 +75,13 @@
 
     switch (SortID) {
       case 0:
-        document.getElementById("myInput").placeholder='Search by ID';
+        document.getElementById("myInput").placeholder='以 編號 搜索';
         break;
       case 1:
-        document.getElementById("myInput").placeholder='Search by Name';
+        document.getElementById("myInput").placeholder='以 名字 搜索';
         break;
       case 2:
-        document.getElementById("myInput").placeholder='Search by Category';
+        document.getElementById("myInput").placeholder='以 類別 搜索';
         break;
     }
   }
@@ -98,7 +98,7 @@
   </div>
 
   <div class="w3-col l2 m2 s6 w3-padding w3-display-container w3-padding-16">
-    <a href="_menu.html" class="w3-button w3-block w3-hover-pale-green w3-display-middle">DOCUMENTATION</a>
+    <a href="0menu.html" class="w3-button w3-block w3-hover-pale-green w3-display-middle">文件檔案</a>
   </div>
 
   <div class="w3-col l6 m2 s6 w3-padding w3-display-container w3-padding-16">
@@ -106,15 +106,15 @@
   </div>
 
   <div class="w3-col l1 m2 s6 w3-padding w3-display-container w3-padding-16">
-    <a href="../about.html" class="w3-button w3-block w3-hover-pale-green w3-display-middle">ABOUT</a>
+    <a href="../about.html" class="w3-button w3-block w3-hover-pale-green w3-display-middle">關於我們</a>
   </div>
 
   <div class="w3-col l1 m2 s6 w3-padding w3-display-container w3-padding-16">
-    <a href="../sites.html" class="w3-button w3-block w3-hover-pale-green w3-display-middle">SITES</a>
+    <a href="../sites.html" class="w3-button w3-block w3-hover-pale-green w3-display-middle">基金會站點</a>
   </div>
 
   <div class="w3-col l1 m2 s6 w3-padding w3-display-container w3-padding-16">
-    <a href="../../ZH/doc/_menu.html" class="w3-button w3-block w3-hover-pale-green w3-display-middle"><span><strong><u>EN</u></strong></span>/<span class="w3-text-gray">中文</span></a>
+    <a href="../../EN/doc/0menu.html" class="w3-button w3-block w3-hover-pale-green w3-display-middle"><span class="w3-text-gray">EN</span>/<span><strong><u>中文</u></strong></span></a>
   </div>
 
 </div>
@@ -123,7 +123,7 @@
 <div class="w3-padding-large f-sofiasans">
 
   <div class="" style="margin-left: 10%; margin-right: 10%;">
-    <h2 class="f-oswald" style="margin-left: 1%;">Index</h2>
+    <h2 class="f-oswald" style="margin-left: 1%;">索引</h2>
     <hr style="color: darkgray; margin-top: -0.5%;">
   </div>
 
@@ -132,42 +132,42 @@
   </div>
   
   <div class="w3-container w3-main w3-row w3-center w3-padding" style="margin-left: 9.1%; margin-right: 9.1%; font-size: 24px; font-family: 'Courier New', Courier, monospace;">
-    <div class="w3-light-gray w3-col l4 m4 s4" onclick="SearchTypeButton('id')" id="idbtn"><b>By ID</b></div>
-    <div class="w3-light-gray w3-col l4 m4 s4" onclick="SearchTypeButton('name')" id="namebtn"><b>By Name</b></div>
-    <div class="w3-light-gray w3-col l4 m4 s4" onclick="SearchTypeButton('category')" id="categorybtn"><b>By Category</b></div>
+    <div class="w3-light-gray w3-col l4 m4 s4" onclick="SearchTypeButton('id')" id="idbtn"><b>以 編號 搜索</b></div>
+    <div class="w3-light-gray w3-col l4 m4 s4" onclick="SearchTypeButton('name')" id="namebtn"><b>以 名字 搜索</b></div>
+    <div class="w3-light-gray w3-col l4 m4 s4" onclick="SearchTypeButton('category')" id="categorybtn"><b>以 類別 搜索</b></div>
   </div>
 
   <div class="w3-container w3-main w3-row w3-center w3-padding w3-responsive" style="margin-left: 9.1%; margin-right: 9.1%;">
     <table class="w3-table w3-striped w3-bordered" id="myTable">
       <tr>
-        <th><u>ID</u></th>
-        <th><u>Name</u></th>
-        <th class="w3-right-align"><u>Category</u></th>
+        <th><u>編號</u></th>
+        <th><u>名字</u></th>
+        <th class="w3-right-align"><u>類別</u></th>
       </tr>
       <tr onclick="document.location = '';">
         <td>A-N-013</td>
-        <td>Sanguine Opera</td>
-        <td class="w3-right-align">Phenomenon</td>
+        <td>血紅歌劇</td>
+        <td class="w3-right-align">現象</td>
       </tr>
       <tr onclick="document.location = '';">
         <td>A-L-024</td>
-        <td>Only My Precious Rose</td>
-        <td class="w3-right-align">Plants</td>
+        <td>唯我之瑰</td>
+        <td class="w3-right-align">植物</td>
       </tr>
       <tr onclick="document.location = '';">
         <td>C-L-025</td>
-        <td>Rostockaceae</td>
-        <td class="w3-right-align">Plants</td>
+        <td>羅斯托克草</td>
+        <td class="w3-right-align">植物</td>
       </tr>
       <tr onclick="document.location = '';">
         <td>B-N-412</td>
-        <td>Barter Box</td>
-        <td class="w3-right-align">Items</td>
+        <td>以物易物箱</td>
+        <td class="w3-right-align">物品</td>
       </tr>
       <tr onclick="document.location = '';">
         <td>C-N-1047</td>
-        <td>Elevator</td>
-        <td class="w3-right-align">Places</td>
+        <td>升降機</td>
+        <td class="w3-right-align">地點</td>
       </tr>
     </table>
     
