@@ -1,0 +1,13 @@
+{
+    "w_ability": {
+        "prefix": "w1",
+        "body": [
+            "**「${1:XXXX}」**",
+            "- 「」",
+            "- 「」",
+            "- 「」",
+            ""
+        ],
+        "description": "Voiceline"
+    }
+}
