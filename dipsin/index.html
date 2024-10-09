@@ -3,7 +3,7 @@
 
   <head>
 
-    <title>Gateway - UNC Foundation</title>
+    <title>When the Sin is Dipped</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet"
@@ -25,7 +25,7 @@ body, html {height: 100%}
         <h2 class="w3-jumbo w3-animate-top w3-center">Dip Sin Sound Effect
           List</h2>
         <p class="w3-animate-top w3-large w3-center"
-          style="letter-spacing: 20px; margin-top: -0.5%;">BOTTOM TEXT</p>
+          style="letter-spacing: 10px; margin-top: -0.5%;"><span id="randomSlogan">Bottom text</span></p>
       </div>
 
       <div>
@@ -110,6 +110,16 @@ body, html {height: 100%}
                   </audio>
                 </td>
               </tr>
+              <tr>
+                <td style="padding-left: 7%; width: 50%;"><h3>Blood</h3></td>
+                <td style="width: 10%;"></td>
+                <td style="vertical-align: middle;">
+                  <audio controls>
+                    <source src="material/blood.ogg" type="audio/ogg">
+                    <source src="material/blood.mp3" type="audio/mpeg">
+                  </audio>
+                </td>
+              </tr>
             </tbody></table>
 
           </div>
@@ -120,5 +130,23 @@ body, html {height: 100%}
     </div>
 
   </body>
+  <script>
+    const slogan = [
+      "When the Sin is Dipped",
+      "Bottom Text",
+      "城市大學是一所歷史悠久 學科齊全 學術實力雄厚 辦學特色鮮明 在國際上具有重要影響力與競爭力的綜合性大學"
+    ];
+
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    };
+
+    sloganIndex = getRandomInt(slogan.length);
+    // console.log(slogan[sloganIndex][0])
+
+    var sloganShown = document.getElementById("randomSlogan");
+    
+    sloganShown.innerText = slogan[sloganIndex];
+  </script>
 
 </html>
