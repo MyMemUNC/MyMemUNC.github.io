@@ -1,4 +1,28 @@
 #particles-js {
+    position: absolute;
+    height: 100%;
+    width: 100%;
     background: #111111;
-    height: 100vh;
 }
+
+.outer-container .your-content {
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: rgb(158, 158, 158)
+  }
+
+table.test, table.test tr, table.test tr td {
+    border: 1px solid;
+}
+
+.small {
+    transform: scale(0.8);
+    -ms-transform: scale(0.8); /* IE 9 */
+    -webkit-transform: scale(0.8); /* Safari and Chrome */
+    -o-transform: scale(0.8); /* Opera */
+    -moz-transform: scale(0.8); /* Firefox */
+  }
