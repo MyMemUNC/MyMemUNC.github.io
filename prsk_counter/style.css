@@ -1,0 +1,74 @@
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #444; /* Darker border */
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #1e1e1e; /* Darker header */
+}
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: #1e1e1e; /* Input background */
+    color: #e0e0e0; /* Input text color */
+    border: 1px solid #444; /* Input border */
+}
+.total {
+    margin-top: 20px;
+}
+.remove-btn {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+.duplicate-btn {
+    background: none;
+    border: none;
+    color: #4CAF50; /* Green color for duplicate button */
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+.highlight {
+    font-weight: bold;
+    color: #FF0000;
+}
+.darken {
+    color: rgb(150, 150, 150);
+}
+/* New button styles */
+button.main {
+    background-color: #6c757d; /* Gray background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px; /* Padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor */
+    /* border-radius: 5px;  Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+    width: 32.8%; /* Full width */
+    margin: 5px 0; /* Margin */
+}
+button.main:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
