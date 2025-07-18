@@ -1,0 +1,213 @@
+/* Main Container Styles */
+body {
+    background-color: #0c0c0c;
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(40,40,40,0.8) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(60,0,30,0.6) 0%, transparent 50%);
+}
+
+/* Header Styles */
+.object-header {
+    border-bottom: 3px solid #8b0000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.object-header::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #8b0000, transparent);
+}
+
+.object-id {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #c0c0c0;
+    text-shadow: 0 0 8px rgba(139, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+/* Dual Box Container */
+.meta-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+/* Unified Box Style */
+.meta-box {
+    flex: 1;
+    min-width: 200px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    padding: 15px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Left Box - Threat Level */
+.threat-box {
+    border-left: 5px solid #8b0000;
+}
+
+/* Right Box - Containment Level */
+.containment-box {
+    border-left: 5px solid #4b0082;
+}
+
+/* Box Header Styles */
+.meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+}
+
+.meta-title {
+    font-weight: bold;
+    color: #c0c0c0;
+    font-size: 1.1em;
+}
+
+/* Level Indicator Styles */
+.level-indicator {
+    display: inline-block;
+    padding: 3px 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    font-size: 1.2em;
+    text-align: center;
+    min-width: 25px;
+}
+
+.threat-level {
+    background-color: #8b0000;
+    color: white;
+}
+
+.containment-level {
+    background-color: #4b0082;
+    color: white;
+}
+
+/* Change Indicator */
+.change-indicator {
+    color: #ff8c00;
+    font-weight: bold;
+    margin-left: 8px;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .meta-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .meta-box {
+        min-width: 100%;
+    }
+}
+
+/* Main Content Styles */
+.content {
+    background-color: rgba(20, 20, 20, 0.7);
+    padding: 20px;
+    border: 1px solid #333;
+    margin-top: 20px;
+    position: relative;
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8b0000, #4b0082, #8b0000);
+}
+
+/* Poetry/Quote Styling */
+.poetry {
+    font-style: italic;
+    color: #b0b0b0;
+    border-left: 3px solid #4b0082;
+    padding-left: 15px;
+    margin: 15px 0;
+    line-height: 1.8;
+}
+
+.warning {
+    color: #ff4500;
+    font-weight: bold;
+}
+
+/* Footer/Divider Styles */
+.divider {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+}
+
+.divider::before {
+    content: "◆";
+    color: #8b0000;
+    font-size: 1.5em;
+    position: relative;
+    top: 5px;
+}
+
+/* Link Styling */
+a {
+    color: #8b8bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #c0c0ff;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .object-id {
+        font-size: 1.8em;
+    }
+    
+    .containment-box {
+        padding: 10px;
+    }
+}
+
+/* Flickering effect for that creepy vibe */
+@keyframes flicker {
+    0% { opacity: 0.95; }
+    5% { opacity: 0.9; }
+    10% { opacity: 0.85; }
+    15% { opacity: 1; }
+    100% { opacity: 0.95; }
+}
+
+body {
+    animation: flicker 10s infinite;
+}
