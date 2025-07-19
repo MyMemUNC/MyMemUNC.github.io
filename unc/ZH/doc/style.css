@@ -1,14 +1,204 @@
-/* Main Container Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Styles */
 body {
     background-color: #0c0c0c;
     color: #e0e0e0;
     font-family: 'Courier New', monospace;
     line-height: 1.6;
-    margin: 0;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background-image: 
         radial-gradient(circle at 25% 25%, rgba(40,40,40,0.8) 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, rgba(60,0,30,0.6) 0%, transparent 50%);
+    animation: 
+        flicker 10s infinite,
+        gradientMove 30s ease infinite alternate;
+    background-size: 200% 200%;
+}
+
+/* Adjust the header to be full width */
+.page-header {
+    background-color: #121212;
+    padding: 15px 0;
+    border-bottom: 2px solid #8b0000;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%; /* Ensure full width */
+}
+
+.page-header h1 {
+    color: #c0c0c0;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.header-links a {
+    color: #8b8bff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.header-links a:hover {
+    text-decoration: underline;
+}
+
+.page-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    max-width: 100%; /* Changed from 1600px to 100% */
+    margin: 0; /* Removed auto margins */
+}
+
+/* Make sidebar stick to left edge */
+.sidebar {
+    position: fixed; /* Changed from sticky to fixed */
+    left: 0;
+    top: 110px; /* Same as header height */
+    height: calc(100vh - 100px); /* Full height minus header */
+    width: 20%;
+    min-width: 250px;
+    padding: 20px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border-right: 1px solid #333;
+    z-index: 10;
+    overflow-y: auto; /* Allow scrolling within sidebar if content is long */
+}
+
+.sidebar h3 {
+    color: #8b0000;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: block;
+    padding: 5px 10px;
+    border-left: 2px solid transparent;
+}
+
+.sidebar a:hover {
+    color: #ffffff;
+    border-left: 2px solid #8b0000;
+}
+
+.sidebar-footer {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+}
+
+.main-content {
+    width: 60%;
+    margin-left: 20%; /* Push content right by sidebar width */
+    margin-right: 20%; /* Push content left by TOC width */
+    padding: 20px;
+}
+
+/* Table of Contents */
+.toc {
+    position: fixed; /* Changed from sticky to fixed */
+    right: 0;
+    top: 110px; /* Same as header height */
+    height: calc(100vh - 100px); /* Full height minus header */
+    width: 20%;
+    min-width: 250px;
+    padding: 20px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border-left: 1px solid #333;
+    z-index: 10;
+    overflow-y: auto; /* Allow scrolling within TOC if content is long */
+}
+
+.toc h3 {
+    color: #8b0000;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+    font-size: 1.1em;
+}
+
+.toc-container {
+    padding: 5px;
+}
+
+.toc-list, .toc-sublist {
+    list-style-type: none;
+    counter-reset: item;
+    padding-left: 1em;
+}
+
+.toc-list > li, .toc-sublist > li {
+    counter-increment: item;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.toc-list > li:before, .toc-sublist > li:before {
+    content: counters(item, ".") " ";
+    position: absolute;
+    left: -1.5em;
+    color: #8b8bff;
+    font-size: 0.9em;
+}
+
+.toc-sublist {
+    margin-top: 5px;
+    margin-left: 1em;
+}
+
+.toc-sublist > li:before {
+    left: -2em;
+}
+
+.toc a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: block;
+    padding: 3px 8px;
+    border-left: 2px solid transparent;
+    font-size: 0.9em;
+}
+
+.toc a:hover {
+    color: #ffffff;
+    border-left: 2px solid #8b8bff;
+    background-color: rgba(60, 0, 30, 0.3);
+}
+
+.toc a.active {
+    color: #ffffff;
+    border-left: 2px solid #ff4500;
+    background-color: rgba(139, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+.toc-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+    font-size: 0.8em;
 }
 
 /* Header Styles */
@@ -53,7 +243,7 @@ body {
     border: 1px solid #333;
     padding: 15px;
     position: relative;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Left Box - Threat Level */
@@ -103,36 +293,32 @@ body {
     color: white;
 }
 
+.previous-level {
+    background-color: hsl(275, 0%, 25%);
+    color: white;
+}
+
 /* Change Indicator */
 .change-indicator {
     color: #ff8c00;
     font-weight: bold;
+    font-size: 18px;
     margin-left: 8px;
     font-size: 0.9em;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .meta-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .meta-box {
-        min-width: 100%;
-    }
-}
-
-/* Main Content Styles */
-.content {
+/* Content Sections */
+/* Add max-width to inner content */
+.content-section {
+    max-width: 1200px; /* Prevent content from becoming too wide */
+    margin: 25px auto; /* Center content within the middle column */
+    padding: 15px;
     background-color: rgba(20, 20, 20, 0.7);
-    padding: 20px;
     border: 1px solid #333;
-    margin-top: 20px;
     position: relative;
 }
 
-.content::before {
+.content-section::before {
     content: "";
     position: absolute;
     top: 0;
@@ -140,6 +326,45 @@ body {
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, #8b0000, #4b0082, #8b0000);
+}
+
+.section-title {
+    color: #8b0000;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+/* Collapsible Section Styles */
+.collapsible {
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    transition: color 0.3s;
+}
+
+.collapsible:hover {
+    color: #ffffff;
+}
+
+.collapsible::before {
+    content: "▼"; /* Down arrow by default */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.8em;
+    transition: transform 0.3s;
+    transform: rotate(-90deg); /* Start rotated to right position */
+}
+
+.collapsible.active::before {
+    transform: rotate(0deg); /* Rotate to down position when expanded */
+}
+
+.collapsible-content {
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    padding: 0 15px;
 }
 
 /* Poetry/Quote Styling */
@@ -172,40 +397,85 @@ body {
     top: 5px;
 }
 
-/* Link Styling */
-a {
-    color: #8b8bff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-a:hover {
-    color: #c0c0ff;
-    text-decoration: underline;
-}
-
 /* Responsive Design */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
+@media (max-width: 600px) {
+    .meta-container {
+        flex-direction: column;
+        gap: 15px;
     }
-    
-    .object-id {
-        font-size: 1.8em;
-    }
-    
-    .containment-box {
-        padding: 10px;
+
+    .meta-box {
+        min-width: 100%;
     }
 }
 
-/* Flickering effect for that creepy vibe */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 25%;
+    }
+    .toc {
+        display: none;
+    }
+    .main-content {
+        width: 75%;
+        margin-left: 25%;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: 0;
+    }
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    25% {
+        background-position: 50% 25%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 50% 75%;
+    }
+    100% {
+        background-position: 0% 100%;
+    }
+}
+
+/* Flickering effect */
 @keyframes flicker {
-    0% { opacity: 0.95; }
-    5% { opacity: 0.9; }
-    10% { opacity: 0.85; }
-    15% { opacity: 1; }
-    100% { opacity: 0.95; }
+    0% {
+        opacity: 0.95;
+    }
+
+    5% {
+        opacity: 0.9;
+    }
+
+    10% {
+        opacity: 0.85;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.95;
+    }
 }
 
 body {

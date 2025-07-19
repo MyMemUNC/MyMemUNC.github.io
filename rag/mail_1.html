@@ -1,0 +1,196 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+
+<style>
+    /* Main container fixes */
+    .container {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        max-width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    /* Email content specific fixes */
+    .email-view {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    .email-header, 
+    .email-body, 
+    .email-footer {
+        width: 100%;
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+    
+    .table-responsive {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    /* Force all child elements to respect boundaries */
+    .email-view * {
+        max-width: 100%;
+    }
+    
+    /* Specific fix for long unbreakable text */
+    .email-body p {
+        word-break: break-word;
+    }
+</style>
+
+<div class="container">
+	<!-- BEGIN INBOX -->
+	<div class="col-md-12" style="margin-top: 5%;">
+		<div class="grid email">
+			<div class="grid-body">
+				<div class="row">
+					<!-- BEGIN INBOX MENU -->
+					<div class="col-md-3">
+						<p class="grid-title"><i class="fa fa-inbox"></i> Inbox</p>
+						<a class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-modal"><i class="fa fa-pencil"></i>&nbsp;&nbsp;NEW MESSAGE</a>
+
+						<hr>
+
+						<div>
+							<ul class="nav nav-pills nav-stacked">
+								<li class="header">Folders</li>
+								<li class="active"><a href="index.html"><i class="fa fa-inbox"></i> Inbox (14)</a></li>
+								<li><a href="#"><i class="fa fa-star"></i> Starred</a></li>
+								<li><a href="#"><i class="fa fa-bookmark"></i> Important</a></li>
+								<li><a href="#"><i class="fa fa-mail-forward"></i> Sent</a></li>
+								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Drafts</a></li>
+								<li><a href="#"><i class="fa fa-folder"></i> Spam (217)</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- END INBOX MENU -->
+					
+					<!-- BEGIN INBOX CONTENT -->
+					<div class="col-md-9">
+						<div class="row">
+							<div class="col-sm-6">
+								<label style="margin-right: 8px;" class="">
+									<div class="icheckbox_square-blue" style="position: relative;"><input type="checkbox" id="check-all" class="icheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+								</label>
+								<div class="btn-group">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+										Action <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="#">Mark as read</a></li>
+										<li><a href="#">Mark as unread</a></li>
+										<li><a href="#">Mark as important</a></li>
+										<li class="divider"></li>
+										<li><a href="#">Report spam</a></li>
+										<li><a href="#">Delete</a></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="col-md-6 search-form">
+								<form action="#" class="text-right">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm" placeholder="Search">
+										<span class="input-group-btn">
+                                            <button type="submit" name="search" class="btn_ btn-primary btn-sm search"><i class="fa fa-search"></i></button></span>
+									</div>			 
+								</form>
+							</div>
+						</div>
+						
+						<div class="padding"></div>
+						
+						<div class="table-responsive">
+							<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="margin-top: 5%;">
+            <div class="email-view">
+                <div class="email-header">
+                    <p>Subject: 處分通告</p>
+                    <p><strong>From:</strong> 首席執行官「尤蒙剛德」ⅠⅠⅠ <br> <strong>To:</strong> You <br> <strong>Date:</strong> Augest 1, 2014</p>
+                </div>
+                <div class="email-body">
+                    <p>鑑於「瑪麗安之心」項目於2014年7月16日發起之行動中，未能達成目標，導致公司蒙受重大損失，包括一艘船隻損失及六名員工傷亡（註：如能明確傷亡情況更好，例：X死Y傷）。</p>
+
+    <p>經董事會慎重審議，依據相關規定及決議，特此通告以下處分決定：</p>
+
+    <p>一、 項目處置：</p>
+    <p>立即終止「瑪麗安之心」項目，並自即日起五年內不得重啟。</p>
+
+    <p>二、 人員處分（項目主管：革律翁）：</p>
+    <ul>
+        <li>革律翁須於三十個工作日內，向董事會提交書面檢討報告。</li>
+        <li>取消革律翁本年度全部獎金。</li>
+        <li>自本處分生效日起十二個月內，每月扣除革律翁月薪之百分之五十，用以償還公司因此事件所受之損失。</li>
+        <li>自本處分生效日起兩年內，革律翁參與任何新項目或退出其當前負責之任何項目，均須事先獲得董事會書面許可。</li>
+    </ul>
+
+    <p>期望與聲明：</p>
+    <p>公司對此次事件深表遺憾。上述措施旨在強化責任歸屬，確保未來專案順利執行，並防止類似事件再次發生。公司珍視每位員工之貢獻，同時要求全體員工對其行為可能導致之公司損失承擔相應責任。</p>
+
+    <p>特此通告。</p>
+                </div>
+                <div class="email-footer">
+                    <button class="btn btn-default" onclick="window.history.back();"><i class="fa fa-arrow-left"></i> Back to Inbox</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+						</div>					
+					</div>
+					<!-- END INBOX CONTENT -->
+					
+					<!-- BEGIN COMPOSE MESSAGE -->
+					<div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-wrapper">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header bg-blue">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<p class="modal-title"><i class="fa fa-envelope"></i> Compose New Message</p>
+									</div>
+									<form action="#" method="post">
+										<div class="modal-body">
+											<div class="form-group">
+												<input name="to" type="email" class="form-control" placeholder="To">
+											</div>
+											<div class="form-group">
+												<input name="cc" type="email" class="form-control" placeholder="Cc">
+											</div>
+											<div class="form-group">
+												<input name="bcc" type="email" class="form-control" placeholder="Bcc">
+											</div>
+											<div class="form-group">
+												<input name="subject" type="email" class="form-control" placeholder="Subject">
+											</div>
+											<div class="form-group">
+												<textarea name="message" id="email_message" class="form-control" placeholder="Message" style="height: 120px;"></textarea>
+											</div>
+											<div class="form-group">														<input type="file" name="attachment">
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+											<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-envelope"></i> Send Message</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END COMPOSE MESSAGE -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END INBOX -->
+</div>
