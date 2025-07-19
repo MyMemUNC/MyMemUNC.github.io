@@ -14,67 +14,156 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-image: 
-        radial-gradient(circle at 25% 25%, rgba(40,40,40,0.8) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(60,0,30,0.6) 0%, transparent 50%);
+        radial-gradient(circle at 25% 25%, hsla(260, 0%, 16%, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, hsla(230, 100%, 12%, 0.6) 0%, transparent 50%);
     animation: 
         flicker 10s infinite,
         gradientMove 30s ease infinite alternate;
     background-size: 200% 200%;
 }
 
-/* Adjust the header to be full width */
+/* Header Styles */
 .page-header {
     background-color: #121212;
     padding: 15px 0;
-    border-bottom: 2px solid #8b0000;
-    text-align: center;
+    border-bottom: 2px solid #5500ff;
     position: sticky;
     top: 0;
     z-index: 100;
-    width: 100%; /* Ensure full width */
+    width: 100%;
 }
 
-.page-header h1 {
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 20px;
+}
+
+.header-title-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.header-title-group h1 {
     color: #c0c0c0;
     font-size: 1.8em;
     margin-bottom: 10px;
+    text-align: center;
+}
+
+.header-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .header-links a {
     color: #8b8bff;
     text-decoration: none;
     margin: 0 10px;
+    white-space: nowrap;
 }
 
 .header-links a:hover {
     text-decoration: underline;
 }
 
+/* Language Switch Button */
+.language-btn {
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #8b8bff;
+    border: 1px solid #5500ff;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    margin-left: auto;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 
+        0 0 5px rgba(91, 0, 255, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.language-btn:hover {
+    background-color: rgba(85, 0, 255, 0.2);
+    color: #ffffff;
+    border-color: #8b8bff;
+    box-shadow: 
+        0 0 10px rgba(91, 0, 255, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.language-btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 0 5px rgba(91, 0, 255, 0.3),
+        inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.language-btn::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(139, 0, 255, 0) 0%,
+        rgba(139, 0, 255, 0) 45%,
+        rgba(139, 0, 255, 0.3) 50%,
+        rgba(139, 0, 255, 0) 55%,
+        rgba(139, 0, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    transition: all 0.5s ease;
+}
+
+.language-btn:hover::after {
+    left: 100%;
+    top: 100%;
+}
+
+/* Rest of your existing CSS remains unchanged */
 .page-container {
     display: flex;
     flex: 1;
     width: 100%;
-    max-width: 100%; /* Changed from 1600px to 100% */
-    margin: 0; /* Removed auto margins */
+    max-width: 100%;
+    margin: 0;
 }
 
-/* Make sidebar stick to left edge */
 .sidebar {
-    position: fixed; /* Changed from sticky to fixed */
+    position: fixed;
     left: 0;
-    top: 110px; /* Same as header height */
-    height: calc(100vh - 100px); /* Full height minus header */
+    top: 110px;
+    height: calc(100vh - 100px);
     width: 20%;
     min-width: 250px;
     padding: 20px;
     background-color: rgba(20, 20, 20, 0.8);
     border-right: 1px solid #333;
     z-index: 10;
-    overflow-y: auto; /* Allow scrolling within sidebar if content is long */
+    overflow-y: auto;
 }
 
 .sidebar h3 {
-    color: #8b0000;
+    color: #5500ff;
     margin-bottom: 15px;
     padding-bottom: 5px;
     border-bottom: 1px solid #333;
@@ -93,13 +182,13 @@ body {
     text-decoration: none;
     transition: color 0.3s;
     display: block;
-    padding: 5px 10px;
+    padding: 5px 30px;
     border-left: 2px solid transparent;
 }
 
 .sidebar a:hover {
     color: #ffffff;
-    border-left: 2px solid #8b0000;
+    border-left: 2px solid #5500ff;
 }
 
 .sidebar-footer {
@@ -110,28 +199,27 @@ body {
 
 .main-content {
     width: 60%;
-    margin-left: 20%; /* Push content right by sidebar width */
-    margin-right: 20%; /* Push content left by TOC width */
+    margin-left: 20%;
+    margin-right: 20%;
     padding: 20px;
 }
 
-/* Table of Contents */
 .toc {
-    position: fixed; /* Changed from sticky to fixed */
+    position: fixed;
     right: 0;
-    top: 110px; /* Same as header height */
-    height: calc(100vh - 100px); /* Full height minus header */
+    top: 110px;
+    height: calc(100vh - 100px);
     width: 20%;
     min-width: 250px;
     padding: 20px;
     background-color: rgba(20, 20, 20, 0.8);
     border-left: 1px solid #333;
     z-index: 10;
-    overflow-y: auto; /* Allow scrolling within TOC if content is long */
+    overflow-y: auto;
 }
 
 .toc h3 {
-    color: #8b0000;
+    color: #5500ff;
     margin-bottom: 15px;
     padding-bottom: 5px;
     border-bottom: 1px solid #333;
@@ -152,6 +240,7 @@ body {
     counter-increment: item;
     margin-bottom: 8px;
     position: relative;
+    padding-left: 10px;
 }
 
 .toc-list > li:before, .toc-sublist > li:before {
@@ -160,6 +249,7 @@ body {
     left: -1.5em;
     color: #8b8bff;
     font-size: 0.9em;
+    padding-left: 10px;
 }
 
 .toc-sublist {
@@ -184,13 +274,13 @@ body {
 .toc a:hover {
     color: #ffffff;
     border-left: 2px solid #8b8bff;
-    background-color: rgba(60, 0, 30, 0.3);
+    background-color: hsla(230, 100%, 12%, 0.3);
 }
 
 .toc a.active {
     color: #ffffff;
-    border-left: 2px solid #ff4500;
-    background-color: rgba(139, 0, 0, 0.3);
+    border-left: 2px solid hsl(276, 100%, 50%);
+    background-color: hsla(260, 100%, 27%, 0.3);
     font-weight: bold;
 }
 
@@ -201,9 +291,8 @@ body {
     font-size: 0.8em;
 }
 
-/* Header Styles */
 .object-header {
-    border-bottom: 3px solid #8b0000;
+    border-bottom: 3px solid #5500ff;
     padding-bottom: 10px;
     margin-bottom: 20px;
     position: relative;
@@ -216,18 +305,47 @@ body {
     left: 0;
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #8b0000, transparent);
+    background: linear-gradient(90deg, transparent, #5500ff, transparent);
 }
 
 .object-id {
     font-size: 2.2em;
     font-weight: bold;
     color: #c0c0c0;
-    text-shadow: 0 0 8px rgba(139, 0, 0, 0.5);
+    text-shadow: 0 0 8px hsla(260, 100%, 27%, 0.5);
     letter-spacing: 2px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
-/* Dual Box Container */
+.object-id span {
+    display: inline-block;
+}
+
+.object-id span:first-child {
+    color: #8b8bff;
+    font-family: 'Courier New', monospace;
+}
+
+.object-id span:last-child {
+    color: #c0c0c0;
+    font-style: italic;
+    position: relative;
+    padding-left: 20px;
+}
+
+.object-id span:last-child::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, #5500ff, transparent);
+}
+
 .meta-container {
     display: flex;
     gap: 20px;
@@ -235,7 +353,6 @@ body {
     flex-wrap: wrap;
 }
 
-/* Unified Box Style */
 .meta-box {
     flex: 1;
     min-width: 200px;
@@ -246,17 +363,14 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Left Box - Threat Level */
 .threat-box {
-    border-left: 5px solid #8b0000;
+    border-left: 5px solid #5500ff;
 }
 
-/* Right Box - Containment Level */
 .containment-box {
     border-left: 5px solid #4b0082;
 }
 
-/* Box Header Styles */
 .meta-header {
     display: flex;
     justify-content: space-between;
@@ -272,7 +386,6 @@ body {
     font-size: 1.1em;
 }
 
-/* Level Indicator Styles */
 .level-indicator {
     display: inline-block;
     padding: 3px 12px;
@@ -284,7 +397,7 @@ body {
 }
 
 .threat-level {
-    background-color: #8b0000;
+    background-color: #5500ff;
     color: white;
 }
 
@@ -298,7 +411,6 @@ body {
     color: white;
 }
 
-/* Change Indicator */
 .change-indicator {
     color: #ff8c00;
     font-weight: bold;
@@ -307,11 +419,9 @@ body {
     font-size: 0.9em;
 }
 
-/* Content Sections */
-/* Add max-width to inner content */
 .content-section {
-    max-width: 1200px; /* Prevent content from becoming too wide */
-    margin: 25px auto; /* Center content within the middle column */
+    max-width: 1200px;
+    margin: 25px auto;
     padding: 15px;
     background-color: rgba(20, 20, 20, 0.7);
     border: 1px solid #333;
@@ -325,17 +435,16 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, #8b0000, #4b0082, #8b0000);
+    background: linear-gradient(90deg, #5500ff, #4b0082, #5500ff);
 }
 
 .section-title {
-    color: #8b0000;
+    color: #5500ff;
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 1.2em;
 }
 
-/* Collapsible Section Styles */
 .collapsible {
     cursor: pointer;
     position: relative;
@@ -348,17 +457,17 @@ body {
 }
 
 .collapsible::before {
-    content: "▼"; /* Down arrow by default */
+    content: "▼";
     position: absolute;
     left: 0;
     top: 0;
     font-size: 0.8em;
     transition: transform 0.3s;
-    transform: rotate(-90deg); /* Start rotated to right position */
+    transform: rotate(-90deg);
 }
 
 .collapsible.active::before {
-    transform: rotate(0deg); /* Rotate to down position when expanded */
+    transform: rotate(0deg);
 }
 
 .collapsible-content {
@@ -367,7 +476,6 @@ body {
     padding: 0 15px;
 }
 
-/* Poetry/Quote Styling */
 .poetry {
     font-style: italic;
     color: #b0b0b0;
@@ -382,7 +490,6 @@ body {
     font-weight: bold;
 }
 
-/* Footer/Divider Styles */
 .divider {
     text-align: center;
     margin: 30px 0;
@@ -391,13 +498,48 @@ body {
 
 .divider::before {
     content: "◆";
-    color: #8b0000;
+    color: #5500ff;
     font-size: 1.5em;
     position: relative;
     top: 5px;
 }
 
-/* Responsive Design */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    25% {
+        background-position: 50% 25%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 50% 75%;
+    }
+    100% {
+        background-position: 0% 100%;
+    }
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 0.95;
+    }
+    5% {
+        opacity: 0.9;
+    }
+    10% {
+        opacity: 0.85;
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.95;
+    }
+}
+
 @media (max-width: 600px) {
     .meta-container {
         flex-direction: column;
@@ -435,49 +577,23 @@ body {
         margin-left: 0;
         margin-right: 0;
     }
-}
-
-@keyframes gradientMove {
-    0% {
-        background-position: 0% 0%;
+    
+    .header-content {
+        flex-direction: column;
+        padding-bottom: 15px;
     }
-    25% {
-        background-position: 50% 25%;
+    
+    .header-links {
+        position: relative;
+        left: auto;
+        transform: none;
+        margin-top: 10px;
     }
-    50% {
-        background-position: 100% 50%;
+    
+    .language-btn {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        transform: none;
     }
-    75% {
-        background-position: 50% 75%;
-    }
-    100% {
-        background-position: 0% 100%;
-    }
-}
-
-/* Flickering effect */
-@keyframes flicker {
-    0% {
-        opacity: 0.95;
-    }
-
-    5% {
-        opacity: 0.9;
-    }
-
-    10% {
-        opacity: 0.85;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.95;
-    }
-}
-
-body {
-    animation: flicker 10s infinite;
 }
