@@ -1,28 +1,428 @@
-#particles-js {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: #111111;
+/* Existing styles from original file */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.outer-container .your-content {
+body {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    background: #121212;
+    color: #f0f0f0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Light mode styles */
+body.light-mode {
+    background: #e1e6ea;
+    color: #333;
+}
+
+body.light-mode .hero p {
+    color: #666;
+}
+
+body.light-mode .project-card {
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .project-card h3 {
+    color: #333;
+}
+
+body.light-mode .project-card p {
+    color: #666;
+}
+
+body.light-mode .card-link {
+    color: #6C63FF;
+}
+
+body.light-mode footer {
+    background: #e8e8e8;
+}
+
+body.light-mode .copyright {
+    color: #888;
+}
+
+body.light-mode .theme-toggle {
+    background: #f0f0f0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .theme-toggle i {
+    color: #333;
+}
+
+/* Header with flashing title */
+header {
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
-    z-index: 1;
-    background-color: transparent;
 }
 
-audio::-webkit-media-controls-panel {
-    background-color: rgb(158, 158, 158)
-  }
-
-table.test, table.test tr, table.test tr td {
-    border: 1px solid;
+.logo {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    min-height: 2rem;
+    display: flex;
+    align-items: center;
 }
 
-.small {
-    transform: scale(0.8);
-    -ms-transform: scale(0.8); /* IE 9 */
-    -webkit-transform: scale(0.8); /* Safari and Chrome */
-    -o-transform: scale(0.8); /* Opera */
-    -moz-transform: scale(0.8); /* Firefox */
-  }
+.logo span {
+    color: #6C63FF;
+}
+
+.name-container {
+    display: inline-block;
+    min-width: 160px;
+    /* Fixed width to prevent shifting */
+    text-align: right;
+}
+
+.name-flash {
+    display: inline-block;
+    text-align: right;
+    transition: opacity 0.3s ease;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+body.light-mode nav a {
+    color: #666;
+}
+
+nav a:hover {
+    color: #6C63FF;
+}
+
+.hero {
+    text-align: center;
+    padding: 6rem 5% 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.hero p {
+    color: #aaa;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    transition: color 0.5s ease;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* For status indicator positioning */
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-image {
+    position: relative;
+    height: 0;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    overflow: hidden;
+}
+
+.card-image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    color: #f0f0f0;
+    transition: color 0.5s ease;
+}
+
+.card-content p {
+    color: #aaa;
+    font-size: 0.95rem;
+    flex-grow: 1;
+    transition: color 0.5s ease;
+}
+
+.card-link {
+    margin-top: 1.5rem;
+    display: inline-block;
+    color: #6C63FF;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.card-link:hover {
+    color: #8a84ff;
+}
+
+.card-link i {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover i {
+    transform: translateX(3px);
+}
+
+/* WIP link style */
+.wip-link {
+    margin-top: 1.5rem;
+    display: inline-block;
+    color: hsl(243, 15%, 69%);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Status indicator */
+.status-indicator {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+/* Status colors */
+.status-finish {
+    background: #4CAF50;
+    /* Green */
+}
+
+.status-ongoing {
+    background: #2196F3;
+    /* Blue */
+}
+
+.status-abandon {
+    background: #9E9E9E;
+    /* Gray - visible in both modes */
+}
+
+footer {
+    margin-top: auto;
+    padding: 3rem 5%;
+    text-align: center;
+    background: #0a0a0a;
+    transition: background 0.5s ease;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-links a {
+    color: #aaa;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+body.light-mode .social-links a {
+    color: #666;
+}
+
+.social-links a:hover {
+    color: #6C63FF;
+}
+
+.copyright {
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: color 0.5s ease;
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+    color: #f0f0f0;
+    transition: color 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .name-container {
+        min-width: 130px;
+        /* Adjust for mobile */
+    }
+}
+
+/* ===================== */
+/* 404 Page Styles */
+/* ===================== */
+.error-container {
+    text-align: center;
+    padding: 5rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6C63FF 0%, #8a84ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.error-message {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.error-description {
+    color: #aaa;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #6C63FF;
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 2px solid #6C63FF;
+}
+
+.home-button:hover {
+    background: transparent;
+    color: #6C63FF;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+}
+
+.error-image {
+    max-width: 300px;
+    margin: 3rem auto 0;
+    opacity: 0.7;
+}
+
+/* Light mode adjustments for 404 page */
+body.light-mode .error-description {
+    color: #666;
+}
+
+body.light-mode .home-button:hover {
+    color: #6C63FF;
+    box-shadow: 0 10px 20px rgba(108, 99, 255, 0.1);
+}
