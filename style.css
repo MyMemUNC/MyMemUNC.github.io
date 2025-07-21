@@ -426,3 +426,56 @@ body.light-mode .home-button:hover {
     color: #6C63FF;
     box-shadow: 0 10px 20px rgba(108, 99, 255, 0.1);
 }
+
+/* ===================== */
+/* Card Link Wrapper */
+/* ===================== */
+.card-link-wrapper {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
+}
+
+/* Make the entire card clickable */
+.project-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure status indicator stays on top */
+.status-indicator {
+    z-index: 20;
+}
+
+/* Adjust link styles */
+.card-link-wrapper .card-link {
+    display: inline-block;
+    color: #6C63FF;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+.card-link-wrapper .card-link i {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.card-link-wrapper .card-link:hover {
+    color: #8a84ff;
+}
+
+.card-link-wrapper .card-link:hover i {
+    transform: translateX(3px);
+}
+
+/* Light mode adjustments */
+body.light-mode .card-link-wrapper .card-link {
+    color: #6C63FF;
+}
