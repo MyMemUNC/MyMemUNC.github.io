@@ -428,54 +428,33 @@ body.light-mode .home-button:hover {
 }
 
 /* ===================== */
-/* Card Link Wrapper */
+/* Image Link Styles */
 /* ===================== */
-.card-link-wrapper {
+.image-link {
     display: block;
+    position: relative;
     text-decoration: none;
     color: inherit;
-    flex-grow: 1;
 }
 
-/* Make the entire card clickable */
-.project-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+.image-link::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 5;
 }
 
-/* Ensure status indicator stays on top */
-.status-indicator {
-    z-index: 20;
+.image-link:hover::after {
+    opacity: 1;
 }
 
-/* Adjust link styles */
-.card-link-wrapper .card-link {
-    display: inline-block;
-    color: #6C63FF;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
-    margin-top: 1.5rem;
-}
-
-.card-link-wrapper .card-link i {
-    margin-left: 5px;
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
-}
-
-.card-link-wrapper .card-link:hover {
-    color: #8a84ff;
-}
-
-.card-link-wrapper .card-link:hover i {
-    transform: translateX(3px);
-}
-
-/* Light mode adjustments */
-body.light-mode .card-link-wrapper .card-link {
-    color: #6C63FF;
+.image-link:hover + .card-content .card-link,
+.image-link:hover ~ .status-indicator {
+    transform: translateY(0);
 }
