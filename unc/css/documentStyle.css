@@ -511,8 +511,8 @@ body {
     padding: 0 15px;
 }
 
-.poetry {
-    font-style: italic;
+.citations {
+    font-style: normal;
     color: #b0b0b0;
     border-left: 3px solid #4b0082;
     padding-left: 15px;
