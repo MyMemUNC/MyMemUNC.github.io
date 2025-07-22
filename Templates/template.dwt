@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- InstanceBeginEditable name="doctitle" -->
+<!-- TemplateBeginEditable name="doctitle" -->
     <title>MyMem | 404 Not Found</title>
-<!-- InstanceEndEditable -->
+<!-- TemplateEndEditable -->
     <link rel="shortcut icon" href="material/book.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -25,21 +25,11 @@
         </nav>
     </header>
 	
-	<!-- InstanceBeginEditable name="body" -->
+	<!-- TemplateBeginEditable name="body" -->
 
-    <div class="error-container">
-        <div class="error-code">404</div>
-        <h2 class="error-message">Where debris gets lost</h2>
-        <p class="error-description">
-            The page you're looking for has been misplaced, buried, or never existed.
-            Maybe it's still under construction, or perhaps it wandered off into the void.
-        </p>
-        <a href="index.html" class="home-button">
-            <i class="fas fa-home"></i> Back to Storeroom
-        </a>
-    </div>
-
-    <!-- InstanceEndEditable -->
+    
+	
+	<!-- TemplateEndEditable -->
 
     <footer>
         <div class="social-links">
@@ -56,4 +46,4 @@
 
     <script src="js/common.js"></script>
 </body>
-<!-- InstanceEnd --></html>
+</html>
