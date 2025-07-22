@@ -16,7 +16,7 @@
                     <h1>
                         <span class="logo-title-group">
                             <img src="../../material/logo.png" alt="UNC Logo"
-                                height="64">
+                                height="48">
                             <span>UNC基金會資料庫</span>
                         </span>
                     </h1>
@@ -49,8 +49,10 @@
             <!-- Main content -->
             <div class="main-content">
                 <div class="object-header">
-                    <div
-                        class="object-id"><span>UNC-024-A</span><span>唯我之瑰</span></div>
+                    <div class="object-id">
+                        <span id="object-code">UNC-024-A</span>
+                        <span id="object-name">唯我之瑰</span>
+                    </div>
                 </div>
 
                 <div class="meta-container">
@@ -195,28 +197,17 @@
             <!-- In your HTML file, replace the current TOC div with this: -->
             <div class="toc">
                 <h3>內容</h3>
-                <div class="toc-container">
-                    <ol class="toc-list">
-                        <li><a href="#section-experiment">實驗規條</a></li>
-                        <li><a href="#section-storage">儲存規條</a></li>
-                        <li>
-                            <a href="#section-description">描述</a>
-                            <ol class="toc-sublist">
-                                <li><a href="#section-literature">文獻
-                                        [A-L-024a]</a></li>
-                                <li><a href="#section-event">事件
-                                        [A-L-024b]</a></li>
-                            </ol>
-                        </li>
-                    </ol>
-                </div>
+                <div class="toc-container"></div>
                 <div class="toc-footer">
-                    <p class="warning">⚠ UNC-042-A</p>
+                    <p class="warning" id="toc-warning">⚠
+                        <span id="toc-code"></span>
+                    </p>
                 </div>
             </div>
         </div> <!-- end page-container -->
 
         <script src="../../javascript/collapsibleExpandable.js"></script>
+        <script src="../../javascript/generateTOC.js"></script>
         <script src="../../javascript/tableOfContent.js"></script>
     </body>
 </html>

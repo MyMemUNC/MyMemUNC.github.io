@@ -13,10 +13,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: 
+    background-image:
         radial-gradient(circle at 25% 25%, hsla(260, 0%, 16%, 0.8) 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, hsla(230, 100%, 12%, 0.6) 0%, transparent 50%);
-    animation: 
+    animation:
         flicker 10s infinite,
         gradientMove 30s ease infinite alternate;
     background-size: 200% 200%;
@@ -34,18 +34,33 @@ body {
 }
 
 .logo-title-group {
+    padding: 10px 0px;
     display: flex;
-    align-items: flex-end; /* Changed from center to flex-end */
+    align-items: center;
+    /* Changed from flex-end to center */
     gap: 15px;
+}
+
+/* More precise adjustment */
+.logo-title-group span {
+    vertical-align: middle;
+    transform: translateY(3px);
+    /* Fine-tune this value */
+}
+
+.header-title-group img {
+    vertical-align: middle;
+    /* Ensures proper vertical alignment */
 }
 
 .header-title-group h1 {
     margin-bottom: 0;
-    line-height: 1.875; /* Add this to prevent line height from affecting vertical alignment */
+    /* Remove bottom margin to prevent extra space */
 }
 
 .header-title-group h1 {
-    margin-bottom: 0; /* Remove the bottom margin to prevent extra space */
+    margin-bottom: 0;
+    /* Remove the bottom margin to prevent extra space */
 }
 
 .header-content {
@@ -108,7 +123,7 @@ body {
     font-size: 0.9em;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 
+    box-shadow:
         0 0 5px rgba(91, 0, 255, 0.3),
         inset 0 1px 1px rgba(255, 255, 255, 0.1);
     position: relative;
@@ -119,7 +134,7 @@ body {
     background-color: rgba(85, 0, 255, 0.2);
     color: #ffffff;
     border-color: #8b8bff;
-    box-shadow: 
+    box-shadow:
         0 0 10px rgba(91, 0, 255, 0.5),
         inset 0 1px 1px rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
@@ -127,7 +142,7 @@ body {
 
 .language-btn:active {
     transform: translateY(0);
-    box-shadow: 
+    box-shadow:
         0 0 5px rgba(91, 0, 255, 0.3),
         inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
@@ -139,14 +154,12 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        to bottom right,
-        rgba(139, 0, 255, 0) 0%,
-        rgba(139, 0, 255, 0) 45%,
-        rgba(139, 0, 255, 0.3) 50%,
-        rgba(139, 0, 255, 0) 55%,
-        rgba(139, 0, 255, 0) 100%
-    );
+    background: linear-gradient(to bottom right,
+            rgba(139, 0, 255, 0) 0%,
+            rgba(139, 0, 255, 0) 45%,
+            rgba(139, 0, 255, 0.3) 50%,
+            rgba(139, 0, 255, 0) 55%,
+            rgba(139, 0, 255, 0) 100%);
     transform: rotate(30deg);
     transition: all 0.5s ease;
 }
@@ -231,7 +244,7 @@ body {
     top: 110px;
     height: calc(100vh - 100px);
     width: 20%;
-    min-width: 250px;    
+    min-width: 250px;
     padding: 64px 20px;
     background-color: rgba(20, 20, 20, 0.8);
     border-left: 1px solid #333;
@@ -257,14 +270,14 @@ body {
     padding-left: 1em;
 }
 
-.toc-list > li, .toc-sublist > li {
+.toc-list>li, .toc-sublist>li {
     counter-increment: item;
     margin-bottom: 8px;
     position: relative;
     padding-left: 10px;
 }
 
-.toc-list > li:before, .toc-sublist > li:before {
+.toc-list>li:before, .toc-sublist>li:before {
     content: counters(item, ".") " ";
     position: absolute;
     left: -1.5em;
@@ -278,7 +291,7 @@ body {
     margin-left: 1em;
 }
 
-.toc-sublist > li:before {
+.toc-sublist>li:before {
     left: -2em;
 }
 
@@ -530,15 +543,19 @@ body {
     0% {
         background-position: 0% 0%;
     }
+
     25% {
         background-position: 50% 25%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     75% {
         background-position: 50% 75%;
     }
+
     100% {
         background-position: 0% 100%;
     }
@@ -548,15 +565,19 @@ body {
     0% {
         opacity: 0.95;
     }
+
     5% {
         opacity: 0.9;
     }
+
     10% {
         opacity: 0.85;
     }
+
     15% {
         opacity: 1;
     }
+
     100% {
         opacity: 0.95;
     }
@@ -577,9 +598,11 @@ body {
     .sidebar {
         width: 25%;
     }
+
     .toc {
         display: none;
     }
+
     .main-content {
         width: 75%;
         margin-left: 25%;
@@ -594,24 +617,25 @@ body {
         height: auto;
         top: 0;
     }
+
     .main-content {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
     }
-    
+
     .header-content {
         flex-direction: column;
         padding-bottom: 15px;
     }
-    
+
     .header-links {
         position: relative;
         left: auto;
         transform: none;
         margin-top: 10px;
     }
-    
+
     .language-btn {
         position: absolute;
         right: 10px;
