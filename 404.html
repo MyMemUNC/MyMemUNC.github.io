@@ -1,68 +1,134 @@
 <!DOCTYPE html>
-<html lang="en"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- InstanceBeginEditable name="doctitle" -->
-    <title>MyMem | 404 Not Found</title>
-<!-- InstanceEndEditable -->
-    <link rel="shortcut icon" href="material/book.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body id="main-error">
-    <header>
-        <div class="logo">
-            <div class="name-container">
-                <span class="name-flash" id="dynamic-name">MyMem</span>
+<html
+    lang="zh"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- InstanceBeginEditable name="doctitle" -->
+        <title id="title">MyMem | 404 Not Found</title>
+        <!-- InstanceEndEditable -->
+        <link rel="shortcut icon" href="material/book.png" type="image/x-icon">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../../css/documentStyle.css">
+        <script
+            src="https://mymemunc.github.io/unc/javascript/languageSwitch.js"></script>
+    </head>
+    <body id="main-error">
+        <header>
+            <div class="logo">
+                <div class="name-container">
+                    <span class="name-flash" id="dynamic-name">MyMem</span>
+                </div>
+                's Storeroom
             </div>
-            's Storeroom
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="404.html">About</a>
+                <a href="404.html">Contact</a>
+            </nav>
+        </header>
+
+        <!-- InstanceBeginEditable name="body" -->
+
+        <div class="error-container">
+            <div class="error-code">404</div>
+            <h2 class="error-message">Where debris gets lost</h2>
+            <p class="error-description">
+                The page you're looking for has been misplaced, buried, or never
+                existed.
+                Maybe it's still under construction, or perhaps it wandered off
+                into the void.
+            </p>
+            <a href="index.html" class="home-button">
+                <i class="fas fa-home"></i> Back to Storeroom
+            </a>
         </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="404.html">About</a>
-            <a href="404.html">Contact</a>
-        </nav>
-    </header>
-	
-	<!-- InstanceBeginEditable name="body" -->
 
-    <div class="error-container">
-        <div class="error-code">404</div>
-        <h2 class="error-message">Where debris gets lost</h2>
-        <p class="error-description">
-            The page you're looking for has been misplaced, buried, or never existed.
-            Maybe it's still under construction, or perhaps it wandered off into the void.
-        </p>
-        <a href="index.html" class="home-button">
-            <i class="fas fa-home"></i> Back to Storeroom
-        </a>
-    </div>
+        <!-- InstanceEndEditable -->
 
-    <!-- InstanceEndEditable -->
+        <footer>
+            <div class="social-links">
+                <a href><i class="fab fa-instagram"></i></a>
+                <a href><i class="fab fa-twitter"></i></a>
+                <a href><i class="fab fa-github"></i></a>
+            </div>
+            <p class="copyright">© 2024 MyMem. All rights reserved.</p>
+        </footer>
 
-    <footer>
-        <div class="social-links">
-            <a href=""><i class="fab fa-instagram"></i></a>
-            <a href=""><i class="fab fa-twitter"></i></a>
-            <a href=""><i class="fab fa-github"></i></a>
+        <div class="theme-toggle">
+            <i class="fas fa-moon"></i>
         </div>
-        <p class="copyright">© 2024 MyMem. All rights reserved.</p>
-    </footer>
 
-    <div class="theme-toggle">
-        <i class="fas fa-moon"></i>
-    </div>
-
-    <script src="js/common.js"></script>
-    <script>
+        <script src="js/common.js"></script>
+        <script>
         const path = window.location.pathname;
 
-        if (path.includes("/unc")) {
+        if (path.includes("/unc/EN/doc") || path.includes("/unc/ZH/doc")) {
+            if (path.includes("/unc/EN/doc")) {
+                document.documentElement.lang = "en";
+            } else {
+                document.documentElement.lang = "zh";
+            }
+            document.getElementById("title").innerText = "UNC-XXX | ACCESS DENIED";
             document.getElementById("main-error").innerHTML = `
-                <h1>Docs 404</h1>
-                <p>The documentation page you’re looking for doesn’t exist.</p>`;
+                <link rel="stylesheet" href="../../css/documentStyle.css"><div class="page-header">
+            <div class="header-content">
+                <div class="header-title-group">
+                    <h1>
+                        <span class="logo-title-group">
+                            <img src="../../material/logo.png" alt="UNC Logo"
+                                height="48">
+                            <span>UNC基金會資料庫</span>
+                        </span>
+                    </h1>
+                    <div class="header-links">
+                        <a href="../index.html">首頁</a> |
+                        <a href="#">文件</a> |
+                        <a href="#">站點</a> |
+                        <a href="#">關於我們</a>
+                    </div>
+                </div>
+                <button id="language-switch" class="language-btn">EN</button>
+            </div>
+        </div>
+
+        <div class="page-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <h3>導航列</h3>
+                <ul>
+                    <li><a href="#">項目清單</a></li>
+                    <li><a href="#">最新更新</a></li>
+                    <li><a href="#">設施</a></li>
+                    <li><a href="#">權限等級</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <p class="warning"
+                        title="限制訪問代碼101：因權限不足，僅限A級人員或以上級別訪問相關資料及內容。">⚠
+                        限制訪問（101）</p>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="main-content">
+                <div class="content-section" id="section-error">
+                    <div class="section-title">[權限驗證失敗]</div>
+                    <p>⛔ 您當前的安全等級（<span class="clearance-level">[未授權]</span>）不足以查看此內容</p>
+                    <p class="notice">請聯繫站點主管或提交<a href="#">權限升級申請</a></p>
+                    <br>
+                    <p class="footnote">此事件已記錄至安全日誌 ██/██/██████</p>
+                    <p>違規代碼：<strong>ERR_ACCESS_DENIED_101</strong></p>
+                </div>
+            </div> <!-- end main-content -->
+
+            <!-- Table of Contents -->
+            <div class="toc">
+            </div>
+        </div>`;
         }
+
     </script>
-</body>
-<!-- InstanceEnd --></html>
+    </body>
+    <!-- InstanceEnd --></html>
