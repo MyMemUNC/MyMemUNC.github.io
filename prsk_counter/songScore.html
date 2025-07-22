@@ -35,18 +35,21 @@
     </tbody>
 </table>
 
-<div class="total">
-    <strong>Total Score: </strong><span id="totalScore" class="darken">0</span> / <span id="totalRequiredScore" style="font-weight: bold;">0</span>
-</div>
-<div class="total">
-    <strong>Estimated Songs to Go: </strong><span id="estimatedSongs">0</span>
+<div class="total-container">
+    <div class="total">
+        <strong>Total Score: </strong><span id="totalScore" class="darken">0</span> / <span id="totalRequiredScore" style="font-weight: bold;">0</span>
+    </div>
+    <div class="total">
+        <strong>Estimated Songs to Go: </strong><span id="estimatedSongs">0</span>
+    </div>
 </div>
 
-<br>
-
-<button id="saveButton" class="main">Save</button>
-<button id="loadButton" class="main">Load</button>
-<button id="resetButton" class="main">Reset</button>
+<!-- Wrap buttons in a container for better centering -->
+<div class="button-container">
+    <button id="saveButton" class="main">Save</button>
+    <button id="loadButton" class="main">Load</button>
+    <button id="resetButton" class="main">Reset</button>
+</div>
 
 <script src="function.js"></script>
 
