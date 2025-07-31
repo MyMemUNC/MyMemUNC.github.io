@@ -463,6 +463,10 @@ body {
     position: relative;
 }
 
+.content-section ul, .content-section pl {
+    margin-left: 32px;
+}
+
 .content-section::before {
     content: "";
     position: absolute;
