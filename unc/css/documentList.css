@@ -1,0 +1,109 @@
+.document-list-container {
+    background-color: rgba(20, 20, 20, 0.7);
+    border: 1px solid #333;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.list-header {
+    display: flex;
+    padding: 10px 15px;
+    background-color: rgba(30, 30, 30, 0.9);
+    border-bottom: 2px solid #5500ff;
+    font-weight: bold;
+    color: #8b8bff;
+}
+
+.list-header > div {
+    flex: 1;
+}
+
+#document-list {
+    margin-top: 15px;
+}
+
+.document-item {
+    display: flex;
+    padding: 12px 15px;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s;
+}
+
+.document-item:hover {
+    background-color: rgba(40, 40, 40, 0.8);
+}
+
+.document-item > div {
+    flex: 1;
+}
+
+.list-id {
+    font-family: 'Courier New', monospace;
+    color: #c0c0c0;
+}
+
+.list-title {
+    color: #e0e0e0;
+}
+
+.list-access {
+    color: #8b8bff;
+    /* Removed font-style: italic; */
+}
+
+.list-handler {
+    color: #b0b0b0;
+    font-family: 'Courier New', monospace;
+}
+
+.na-value {
+    color: #666666 !important;
+}
+
+.locked {
+    color: #ffaa00;
+}
+
+.accessible a {
+    color: #8b8bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.accessible a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .list-header {
+        display: none;
+    }
+    
+    .document-item {
+        flex-direction: column;
+        border-bottom: 2px solid #333;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .document-item > div {
+        margin-bottom: 8px;
+    }
+    
+    .document-item > div::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #8b8bff;
+        margin-right: 10px;
+        display: inline-block;
+        width: 120px;
+    }
+    
+    .list-id::before { content: "項目編號: "; }
+    .list-title::before { content: "標題: "; }
+    .list-access::before { content: "讀取權限要求: "; }
+    .list-handler::before { content: "經手人: "; }
+}
+
