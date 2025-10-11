@@ -184,7 +184,6 @@ body {
     top: 110px;
     height: calc(100vh - 100px);
     width: 20%;
-    min-width: 250px;
     padding: 64px 20px;
     background-color: rgba(20, 20, 20, 0.8);
     border-right: 1px solid #333;
@@ -610,7 +609,7 @@ body {
 
 @media (max-width: 1200px) {
     .sidebar {
-        width: 25%;
+        display: none;
     }
 
     .toc {
@@ -618,8 +617,8 @@ body {
     }
 
     .main-content {
-        width: 75%;
-        margin-left: 25%;
+        width: 100%;
+        margin-left: 0;
         margin-right: 0;
     }
 }
@@ -705,3 +704,4 @@ body {
         margin: 20px 0;
     }
 }
+
