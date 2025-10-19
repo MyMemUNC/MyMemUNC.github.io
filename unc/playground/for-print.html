@@ -1,117 +1,131 @@
 <!DOCTYPE html>
 <html lang="zh">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <title>UNC-S-P-004 | 阿卡夏記錄</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>UNC-S-P-004 | 阿卡夏記錄</title>
+    <script>
+        const lang = "ZH"
+    </script>
+</head>
 
-    <body>
-        <div class="main-content">
-            <div class="object-header">
-                <div class="object-id">
-                    <span id="object-code">UNC-004-S</span>
-                    <span id="object-name">阿卡夏記錄</span>
-                </div>
-            </div>
-
-            <div class="meta-container">
-                <!-- Threat Level Box -->
-                <div class="meta-box threat-box">
-                    <div class="meta-header">
-                        <span class="meta-title">威脅程度</span>
-                        <span class="level-indicator threat-level">S</span>
-                    </div>
-                </div>
-
-                <!-- Containment Level Box -->
-                <div class="meta-box containment-box">
-                    <div class="meta-header">
-                        <span class="meta-title">收容/控制難度</span>
-                        <div>
-                            <span
-                                class="level-indicator containment-level">不適用</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 實驗規條 -->
-            <div class="content-section" id="section-experiment">
-                <div class="section-title">實驗規條</div>
-                <p>所有進入 S-P-004-1 區域之行動需經三層級批准，並須由 A
-                    級以上調查員領隊。進入者需裝備時效紀錄裝置與精神認知穩定器，並於進入前完成鏡像記憶對照備份。</p>
-                
-                <p>在 S-P-004-1 中所獲得之
-                    S-P-004-2（實體媒介）應於現場影像記錄與封存後立即銷毀，僅保留數位副本，且未經授權不得攜出異域空間以外。</p>
-                
-                <p>非授權人員不得接近任何已標記為 S-P-004-1 潛在活化區域 1 公里內範圍。所有曾進入 S-P-004-1
-                    且經歷復甦現象者，需接受長期觀察，並限制其短時間內與其他 S-P-004-1 再次接觸。</p>
-            </div>
-
-            <!-- 儲存規條 -->
-            <div class="content-section" id="section-storage">
-                <div class="section-title">儲存規條</div>
-                <p>S-P-004 無固定物理實體，無法進行常規儲存或遷移。所有已識別之 S-P-004-1
-                    活化地點需由防範性頻譜干擾器與記憶屏蔽裝置持續封鎖，並建立遠端觀測站監控能量頻譜變動。</p>
-                
-                <p>若於任意區域發現與魔女頻譜近似、但不屬於既存十二派系之異常震盪，應視為潛在 S-P-004
-                    活化徵兆，立即封鎖並上報調查部門進行交叉頻譜驗證。</p>
-            </div>
-
-            <!-- 描述 -->
-            <div class="content-section" id="section-description">
-                <div class="section-title">描述</div>
-                <p>S-P-004
-                    為一種具選擇性觸發特性的區域性幻境生成現象。雖名稱與神智學及人智學中之「阿卡夏記錄」相同，惟目前未發現兩者間有可驗證之關聯性。S-P-004
-                    發生不具地理規律，惟其活化區域多為曾發生導致多數個體產生未竟意志、心理壓力或集體創傷之事件之地區，事件性質可為人為或自然。</p>
-                
-                <p>S-P-004
-                    將於條件達成後在該地生成異常領域（S-P-004-1），其存在對一般觀察者無明顯異狀，但能以感應裝置測出近似魔女頻譜的波動。該頻譜與既有十二魔女派系皆不吻合，顯示其為獨立來源。</p>
-                
-                <p>進入 S-P-004-1 的條件具有選擇性。符合下列任一者，在接近 S-P-004-1
-                    後即會無察覺地進入幻境：</p>
-                <ul>
-                    <li>曾長期逗留、生活或工作於該地</li>
-                    <li>擁有該地相關之深層個人記憶</li>
-                    <li>對該地有長期認知執着或強烈求知傾向</li>
-                    <li>[已刪除]</li>
-                </ul>
-                
-                <p>倘若個體對事件發生經過具有明確或概略認知、與事件存在直接因果關聯、曾親歷事件，或曾脱離相關
-                    S-P-004-1，S-P-004 將不予觸發，推測為其內部排斥機制之一。</p>
-                
-                <p>幻境內時間與外界同步。其呈現形式為該地過去某段時間的場景重建，傾向於事件發生前之社會或人際狀態。S-P-004-1
-                    內存在一定程度之物理常規異變：進入者雖無需攝取食物或水分即可維持生理穩定，仍會感受到飢餓與口渴等生理感受；惟此狀態未觀測到對進入者本體產生任何生命危險。進入者仍需定期進入睡眠狀態以維持心理機能。</p>
-                
-                <p>所有進入者將獲得一件隨身媒介（S-P-004-2），通常為紙本筆記，少數案例中為其他舊型媒體（錄音帶、磁片等），其表面皆標有「阿卡夏記錄」字樣。S-P-004-2
-                    會記錄進入者之過往記憶片段，惟內容混合真偽，伴隨模糊與記憶錯位。S-P-004-2 會每 12
-                    小時自動更新一次，內容根據進入者在幻境中之行為做出動態調整。</p>
-                
-                <p>如進入者於幻境中死亡，S-P-004 會依未知準則出現三種結果之一：個體於 S-P-004-1
-                    中央區域重新出現，原屍體完全消失，並同步重構其所持之
-                    S-P-004-2；個體被強制逐出異常領域，返回外部現實環境；於現實世界確認個體已死亡，S-P-004-1
-                    內對應之實體將即刻解體並消散。於前兩種情形中，復甦或被逐出者均顯示出明顯的理智穩定性下降。主要症狀包括行為遲緩、語言失序、記憶混淆及對幻境與現實之辨識障礙。
-                </p>
-                
-                <p>脫離 S-P-004-1
-                    的另一已確認方式為完成幻境中存在之隱性目標。該目標無明示提示，推測與事件背景、未竟之行動或歷史事件核心有關。可透過與幻境內個體互動獲得間接線索，或主動重構事件過程進行試探。</p>
-                
-                <p>一旦成功脫離 S-P-004-1，該幻境及其頻譜即時消失，S-P-004
-                    現象將就此終止；然而，經觀測，該現象將於不可預期之時點再次顯現，重啟機制尚無法以任何手段遏止或預測。</p>
-            </div>
-
-            <!-- <div class="divider"></div> -->
-
-            <!-- 附錄1 -->
-            <!-- <div class="content-section" id="section-event1">
-                    <div class="collapsible section-title">附錄1</div>
-                    <div class="collapsible-content">
-                        <p>此處存放補充材料，可包含以下任意內容：實驗記錄、事件報告、跨部門研究摘要、外部機構分析、權限升級記錄或特殊協議。每份材料需標註日期、來源及安全等級。</p>
-                    </div>
-                </div> -->
-
+<body>
+    <div class="heading">
+        <!-- 左側 Logo -->
+        <div class="logo">
+            <img src="../material/blacklogo_withtext_ZH.png" alt="Logo" class="imgLarger">
         </div>
-    </body>
+
+        <!-- 右側手寫區 -->
+        <div class="handwrite">
+            <label>日期：<span class="blank date-spacing">&nbsp;/&nbsp;/&nbsp;</span></label>
+            <label>編號：<span class="blank">&nbsp;UNC-004-██████-██████</span></label>
+            <label>備註：<span class="blank long transparent-text">placeholder</span></label>
+        </div>
+    </div>
+
+    <div class="top-row">
+        <div class="object-header">
+            <div class="object-id">
+                <span id="object-code">UNC-004-S</span>
+                <span id="object-name">阿卡夏記錄</span>
+            </div>
+        </div>
+
+        <div class="meta-container">
+            <!-- Threat Level Box -->
+            <div class="meta-box threat-box">
+                <div class="meta-header">
+                    <span class="meta-title">威脅程度</span>
+                    <span class="level-indicator threat-level">S</span>
+                </div>
+            </div>
+
+            <!-- Containment Level Box -->
+            <div class="meta-box containment-box">
+                <div class="meta-header">
+                    <span class="meta-title">收容/控制難度</span>
+                    <div>
+                        <span class="level-indicator containment-level">不適用</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 實驗規條 -->
+    <div class="content-section" id="section-experiment">
+        <div class="section-title">實驗規條</div>
+        <p>所有進入 S-P-004-1 區域之行動需經三層級批准，並須由 A
+            級以上調查員領隊。進入者需裝備時效紀錄裝置與精神認知穩定器，並於進入前完成鏡像記憶對照備份。</p>
+
+        <p>在 S-P-004-1 中所獲得之
+            S-P-004-2（實體媒介）應於現場影像記錄與封存後立即銷毀，僅保留數位副本，且未經授權不得攜出異域空間以外。</p>
+
+        <p>非授權人員不得接近任何已標記為 S-P-004-1 潛在活化區域 1 公里內範圍。所有曾進入 S-P-004-1
+            且經歷復甦現象者，需接受長期觀察，並限制其短時間內與其他 S-P-004-1 再次接觸。</p>
+    </div>
+
+    <!-- 儲存規條 -->
+    <div class="content-section" id="section-storage">
+        <div class="section-title">儲存規條</div>
+        <p>S-P-004 無固定物理實體，無法進行常規儲存或遷移。所有已識別之 S-P-004-1
+            活化地點需由防範性頻譜干擾器與記憶屏蔽裝置持續封鎖，並建立遠端觀測站監控能量頻譜變動。</p>
+
+        <p>若於任意區域發現與魔女頻譜近似、但不屬於既存十二派系之異常震盪，應視為潛在 S-P-004
+            活化徵兆，立即封鎖並上報調查部門進行交叉頻譜驗證。</p>
+    </div>
+
+    <!-- 描述 -->
+    <div class="content-section" id="section-description">
+        <div class="section-title">描述</div>
+        <p>S-P-004
+            為一種具選擇性觸發特性的區域性幻境生成現象。S-P-004
+            發生不具地理規律，惟其活化區域多為曾發生導致多數個體產生未竟意志、心理壓力或集體創傷之事件之地區，事件性質可為人為或自然。</p>
+
+        <p>S-P-004
+            將於條件達成後在該地生成異常領域（S-P-004-1），其存在對一般觀察者無明顯異狀，但能以感應裝置測出近似魔女頻譜的波動。該頻譜與既有十二魔女派系皆不吻合，顯示其為獨立來源。</p>
+
+        <p>進入 S-P-004-1 的條件具有選擇性。符合下列任一者，在接近 S-P-004-1
+            後即會無察覺地進入幻境：</p>
+        <ul>
+            <li>曾長期逗留、生活或工作於該地</li>
+            <li>擁有該地相關之深層個人記憶</li>
+            <li>對該地有長期認知執着或強烈求知傾向</li>
+            <li>知悉該區域為 S-P-004-1 且有進入意願者</li>
+            <li>[已刪除]</li>
+        </ul>
+
+        <p>倘若個體對事件發生經過具有明確且詳細認知、與事件存在直接因果關聯、曾親歷事件並保有完整記憶，或曾脱離相關
+            S-P-004-1，S-P-004 將不予觸發，推測為其內部排斥機制之一。</p>
+
+        <p>幻境內時間與外界同步。其呈現形式為該地過去某段時間的場景重建，傾向於事件發生前之社會或人際狀態。S-P-004-1
+            內存在一定程度之物理常規異變：進入者雖無需攝取食物或水分即可維持生理穩定，仍會感受到飢餓與口渴等生理感受；惟此狀態未觀測到對進入者本體產生任何生命危險。進入者仍需定期進入睡眠狀態以維持心理機能。</p>
+
+        <p>所有進入者將獲得一件隨身媒介（S-P-004-2），通常為紙本筆記，少數案例中為其他舊型媒體（錄音帶、磁片等），其表面皆標有「阿卡夏記錄」字樣。S-P-004-2
+            會記錄進入者之過往記憶片段，惟內容混合真偽，伴隨模糊與記憶錯位。S-P-004-2 會每 12
+            小時自動更新一次，內容根據進入者在幻境中之行為做出動態調整。</p>
+
+        <p>如進入者於幻境中死亡，S-P-004 會依未知準則出現三種結果之一：個體於 S-P-004-1
+            中央區域重新出現，原屍體完全消失，並同步重構其所持之
+            S-P-004-2；個體被強制逐出異常領域，返回外部現實環境；於現實世界確認個體已死亡，S-P-004-1
+            內對應之實體將即刻解體並消散。於前兩種情形中，復甦或被逐出者均顯示出明顯的理智穩定性下降。主要症狀包括行為遲緩、語言失序、記憶混淆及對幻境與現實之辨識障礙。
+        </p>
+
+        <p>脫離 S-P-004-1
+            的另一已確認方式為完成幻境中存在之隱性目標。該目標無明示提示，推測與事件背景、未竟之行動或歷史事件核心有關。可透過與幻境內個體互動獲得間接線索，或主動重構事件過程進行試探。</p>
+
+        <p>一旦成功脫離 S-P-004-1，該幻境及其頻譜即時消失，S-P-004
+            現象將就此終止；然而，經觀測，該現象將於不可預期之時點再次顯現，重啟機制尚無法以任何手段遏止或預測。</p>
+    </div>
+
+    <div class="footnotes">
+      <ol>
+        <li>雖名稱與神智學及人智學中之「阿卡夏記錄」相同，惟目前未發現兩者間有可驗證之關聯性。</li>
+      </ol>
+    </div>
+
+    <!-- <script src="printConfig.js"></script> -->
+</body>
 </html>
