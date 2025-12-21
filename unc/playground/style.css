@@ -8,10 +8,7 @@ body {
   line-height: 1.6;
 }
 
-/* --------------  列印續行提示  -------------- */
-.continued-hint {
-  color: #f00;
-}
+
 
 .main-content {
   background: #fff;
@@ -61,6 +58,7 @@ img.imgSmaller {
   align-items: center;
   white-space: nowrap;
   padding-right: 15px;
+  justify-content: flex-end;
 }
 
 .transparent-text {
@@ -222,19 +220,6 @@ img.imgSmaller {
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
     margin-bottom: 1rem;
-  }
-
-  .continued-hint {
-    display: block;
-    position: absolute;
-    bottom: 0.4cm;
-    right: 0.8cm;
-    font-size: 0.75rem;
-    color: #666;
-  }
-
-  .split-node {
-    position: relative;
   }
 
   .footnotes {
