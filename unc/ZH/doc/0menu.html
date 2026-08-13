@@ -71,6 +71,9 @@
             </div>
             
             <div class="document-list-container">
+                <div style="margin-bottom: 15px;">
+                    <button id="written-only-btn" onclick="toggleWrittenOnly()">只顯示已撰寫文件</button>
+                </div>
                 <div class="list-header">
                     <div class="list-id">項目編號</div>
                     <div class="list-title">標題</div>
@@ -82,8 +85,29 @@
         </div>
     </div>
 
-    <script src="../../javascript/documentListing.js"></script>
     <script src="../../javascript/documentOverrides.js"></script>
+    <script src="../../javascript/documentListing.js"></script>
     <script src="../../javascript/languageSwitch.js"></script>
+    <script>
+        var writtenOnlyActive = false;
+        function toggleWrittenOnly() {
+            writtenOnlyActive = !writtenOnlyActive;
+            var btn = document.getElementById('written-only-btn');
+            var items = document.querySelectorAll('#document-list .document-item');
+            if (writtenOnlyActive) {
+                btn.classList.add('active');
+                items.forEach(function(item) {
+                    if (!item.classList.contains('accessible')) {
+                        item.style.display = 'none';
+                    }
+                });
+            } else {
+                btn.classList.remove('active');
+                items.forEach(function(item) {
+                    item.style.display = '';
+                });
+            }
+        }
+    </script>
 </body>
 </html>

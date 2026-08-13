@@ -8,24 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
     accessible: false,
     accessLevel: 'N/A',
     handler: 'N/A',
-    title: '[拒絕訪問]'
+    title: '[拒絕訪問]',
+    threatLevel: '█'
   },
   
   // Special cases override
   overrides: window.documentOverrides || {},
   
   // Generate document list with pagination
-  generate: function(start = 1, count = 1000) {
+  generate: function(start = 1, count = 2000) {
     const documents = [];
     
     for (let i = 0; i < count; i++) {
       const num = start + i;
-      const id = `UNC-${String(num).padStart(3, '0')}-█`;
       const doc = { 
-        id, 
         ...this.defaults, 
         ...(this.overrides[num] || {})
       };
+      
+      // Use threatLevel from override or default
+      const threatLevel = doc.threatLevel || '█';
+      doc.id = `UNC-${String(num).padStart(3, '0')}-${threatLevel}`;
       
       // Generate filename only for accessible documents
       if (doc.accessible) {
@@ -41,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 };
 
-// Generate first 1000 documents starting from UNC-001
-const documents = documentData.generate(1, 1000);
+// Generate first 2000 documents starting from UNC-001
+const documents = documentData.generate(1, 2000);
 
     // Generate document list
     documents.forEach(doc => {

@@ -107,3 +107,27 @@
     .list-handler::before { content: "經手人: "; }
 }
 
+
+/* Written-only filter button */
+#written-only-btn {
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #8b8bff;
+    border: 1px solid #333;
+    padding: 8px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#written-only-btn:hover {
+    background-color: rgba(40, 40, 40, 0.9);
+    border-color: #5500ff;
+}
+
+#written-only-btn.active {
+    background-color: rgba(85, 0, 255, 0.2);
+    border-color: #5500ff;
+    color: #ffffff;
+}
+
