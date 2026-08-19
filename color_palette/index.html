@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Palette Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #111;
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0;
+    }
+
+    /* ── Top bar ───────────────────────────────────────────── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 28px;
+      border-bottom: 1px solid #222;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* ── Main layout ────────────────────────────────────────── */
+    .layout {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ── Left sidebar ───────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      min-width: 260px;
+      background: #161616;
+      border-right: 1px solid #222;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid #222;
+      flex-shrink: 0;
+    }
+
+    .sidebar-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .sidebar-meta-btns {
+      display: flex;
+      gap: 4px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s, background 0.15s;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .icon-btn .material-symbols-outlined {
+      font-size: 1.1rem;
+    }
+
+    .icon-btn:hover {
+      color: #ddd;
+      background: #222;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.93);
+    }
+
+    .sidebar-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+
+    .sidebar-empty {
+      padding: 24px 16px;
+      color: #444;
+      font-size: 0.78rem;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .palette-card {
+      padding: 10px 14px;
+      cursor: pointer;
+      border-radius: 8px;
+      margin: 3px 8px;
+      transition: background 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .palette-card:hover {
+      background: #1f1f1f;
+    }
+
+    .palette-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .palette-card-name {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #ccc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+    }
+
+    .palette-card-actions {
+      display: flex;
+      gap: 2px;
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .palette-card:hover .palette-card-actions {
+      opacity: 1;
+    }
+
+    .palette-card-actions .icon-btn {
+      font-size: 0;
+      padding: 3px;
+    }
+
+    .palette-card-actions .icon-btn .material-symbols-outlined {
+      font-size: 0.95rem;
+    }
+
+    .swatch-strip {
+      display: flex;
+      border-radius: 5px;
+      overflow: hidden;
+      height: 22px;
+      gap: 1px;
+    }
+
+    .swatch {
+      flex: 1;
+      height: 100%;
+    }
+
+    .palette-card-date {
+      font-size: 0.68rem;
+      color: #555;
+    }
+
+    /* ── Main content ───────────────────────────────────────── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 36px 28px 60px;
+      gap: 24px;
+      overflow-y: auto;
+      min-width: 0;
+    }
+
+    .input-area {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    textarea {
+      font-family: 'Montserrat', monospace;
+      font-size: 0.95rem;
+      background: #1e1e1e;
+      color: #f0f0f0;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 16px;
+      resize: vertical;
+      min-height: 140px;
+      outline: none;
+      line-height: 1.7;
+    }
+
+    textarea:focus { outline: none; }
+    textarea::placeholder { color: #555; }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    #generateBtn {
+      grid-column: span 4;
+    }
+
+    .btn-row.has-results #generateBtn {
+      grid-column: span 2;
+    }
+
+    .random-wrapper {
+      grid-column: span 1;
+    }
+
+    button {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 7px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    button:active { transform: scale(0.97); }
+
+    button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .material-symbols-outlined {
+      font-size: 1.05rem;
+      vertical-align: middle;
+      user-select: none;
+      line-height: 1;
+    }
+
+    #generateBtn {
+      background: #fff;
+      color: #111;
+    }
+    #generateBtn:hover:not(:disabled) { opacity: 0.88; }
+
+    #saveBtn {
+      background: #2a4a7a;
+      color: #fff;
+      display: none;
+    }
+    #saveBtn:hover:not(:disabled) { opacity: 0.85; }
+    #saveBtn.visible { display: inline-flex; }
+
+    #downloadBtn {
+      background: #2a7a4f;
+      color: #fff;
+      display: none;
+    }
+    #downloadBtn.visible { display: inline-flex; }
+    #downloadBtn:hover:not(:disabled) { opacity: 0.85; }
+
+    /* ── Random button + popover ────────────────────────────── */
+    .random-wrapper {
+      position: relative;
+      display: flex;
+      grid-column: span 1;
+    }
+
+    #randomBtn {
+      background: #5a2a7a;
+      color: #fff;
+    }
+    #randomBtn:hover:not(:disabled) { opacity: 0.85; }
+
+    #resetBtn {
+      background: #3a2020;
+      color: #e06c6c;
+    }
+    #resetBtn:hover:not(:disabled) { opacity: 0.85; }
+
+    .random-popover {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 16px;
+      width: 230px;
+      z-index: 100;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .random-popover.open {
+      display: flex;
+    }
+
+    .popover-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .popover-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    select {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      background: #2a2a2a;
+      color: #f0f0f0;
+      border: 1px solid #383838;
+      border-radius: 6px;
+      padding: 7px 10px;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 30px;
+    }
+
+    select:focus { border-color: #555; }
+
+    #rollBtn {
+      background: #5a2a7a;
+      color: #fff;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2px;
+    }
+    #rollBtn:hover { opacity: 0.85; }
+
+    /* ── Status ─────────────────────────────────────────────── */
+    #status {
+      font-size: 0.8rem;
+      min-height: 1.2em;
+      color: #888;
+      letter-spacing: 0.03em;
+    }
+    #status.error { color: #e06c6c; }
+
+    /* ── Canvas ─────────────────────────────────────────────── */
+    .canvas-wrapper {
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+      background: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .canvas-placeholder {
+      color: #333;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    #paletteCanvas {
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+    #paletteCanvas.visible { display: block; }
+
+    /* ── Import file input (hidden) ─────────────────────────── */
+    #importInput { display: none; }
+
+    /* ── Scrollbar styling ──────────────────────────────────── */
+    .sidebar-list::-webkit-scrollbar { width: 4px; }
+    .sidebar-list::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-list::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+
+    /* ── Save name dialog overlay ───────────────────────────── */
+    .dialog-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .dialog-overlay.open {
+      display: flex;
+    }
+    .dialog-box {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 24px;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.7);
+    }
+    .dialog-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .dialog-input {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      background: #2a2a2a;
+      color: #f0f0f0;
+      border: 1px solid #383838;
+      border-radius: 7px;
+      padding: 10px 12px;
+      outline: none;
+      width: 100%;
+    }
+    .dialog-input:focus { border-color: #555; }
+    .dialog-btns {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .dialog-btns button {
+      font-size: 0.8rem;
+      padding: 8px 18px;
+    }
+    #dialogCancelBtn {
+      background: #2a2a2a;
+      color: #aaa;
+    }
+    #dialogCancelBtn:hover { opacity: 0.85; }
+    #dialogConfirmBtn {
+      background: #2a4a7a;
+      color: #fff;
+    }
+    #dialogConfirmBtn:hover { opacity: 0.85; }
+
+    /* ── Edit dialog color rows ─────────────────────────────── */
+    .edit-color-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .edit-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 5px;
+      flex-shrink: 0;
+      border: 1px solid #444;
+    }
+
+    .edit-hex-input {
+      font-family: 'Montserrat', monospace;
+      font-size: 0.85rem;
+      background: #2a2a2a;
+      color: #f0f0f0;
+      border: 1px solid #383838;
+      border-radius: 6px;
+      padding: 6px 10px;
+      outline: none;
+      flex: 1;
+      text-transform: uppercase;
+    }
+
+    .edit-hex-input:focus { border-color: #555; }
+    .edit-hex-input.invalid { border-color: #e06c6c; }
+
+    .edit-remove-btn {
+      background: none;
+      border: none;
+      color: #555;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      width: auto;
+      transition: color 0.15s;
+    }
+    .edit-remove-btn:hover { color: #e06c6c; }
+    .edit-remove-btn .material-symbols-outlined { font-size: 1rem; }
+
+    #editDialogCancelBtn  { background: #2a2a2a; color: #aaa; }
+    #editDialogCancelBtn:hover { opacity: 0.85; }
+    #editDialogConfirmBtn { background: #2a4a7a; color: #fff; }
+    #editDialogConfirmBtn:hover { opacity: 0.85; }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .sidebar { width: 200px; min-width: 200px; }
+      .main { padding: 24px 14px 40px; }
+    }
+
+    @media (max-width: 520px) {
+      .layout { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        min-width: unset;
+        border-right: none;
+        border-bottom: 1px solid #222;
+        max-height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Top bar ─────────────────────────────────────────────── -->
+  <div class="topbar">
+    <h1><span class="material-symbols-outlined">palette</span> Color Palette Generator</h1>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="exportBtn" title="Export palettes as JSON">
+        <span class="material-symbols-outlined">upload_file</span> Export
+      </button>
+      <button class="icon-btn" id="importBtn" title="Import palettes from JSON">
+        <span class="material-symbols-outlined">file_open</span> Import
+      </button>
+      <input type="file" id="importInput" accept=".json" />
+    </div>
+  </div>
+
+  <!-- ── Two-column layout ───────────────────────────────────── -->
+  <div class="layout">
+
+    <!-- Left sidebar: saved palettes -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-title">Saved Palettes</span>
+      </div>
+      <div class="sidebar-list" id="sidebarList">
+        <div class="sidebar-empty" id="sidebarEmpty">
+          No saved palettes yet.<br/>Hit Save after generating one.
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <div class="input-area">
+        <label for="hexInput">Hex Codes — one per line</label>
+        <textarea
+          id="hexInput"
+          placeholder="e.g.&#10;#7CFC00&#10;00ED85&#10;#1DA1C8&#10;0066FF"
+          spellcheck="false"
+        ></textarea>
+
+        <div class="btn-row">
+          <button id="generateBtn"><span class="material-symbols-outlined">auto_awesome</span>Generate</button>
+          <button id="downloadBtn"><span class="material-symbols-outlined">download</span>Download PNG</button>
+          <button id="saveBtn"><span class="material-symbols-outlined">bookmark</span>Save</button>
+
+          <!-- Random with popover -->
+          <div class="random-wrapper">
+            <button id="randomBtn"><span class="material-symbols-outlined">casino</span>Random</button>
+            <div class="random-popover" id="randomPopover">
+              <div class="popover-field">
+                <span class="popover-label">Harmony</span>
+                <select id="harmonySelect">
+                  <option value="analogous">Analogous</option>
+                  <option value="complementary">Complementary</option>
+                  <option value="triadic">Triadic</option>
+                  <option value="split-complementary">Split-Complementary</option>
+                  <option value="tetradic">Tetradic</option>
+                  <option value="monochromatic">Monochromatic</option>
+                </select>
+              </div>
+              <div class="popover-field">
+                <span class="popover-label">Mood</span>
+                <select id="moodSelect">
+                  <option value="none">None (free range)</option>
+                  <option value="warm">Warm</option>
+                  <option value="cool">Cool</option>
+                  <option value="pastel">Pastel</option>
+                  <option value="earthy">Earthy</option>
+                  <option value="neon">Neon</option>
+                </select>
+              </div>
+              <button id="rollBtn"><span class="material-symbols-outlined">shuffle</span>Roll</button>
+            </div>
+          </div>
+
+          <button id="resetBtn"><span class="material-symbols-outlined">restart_alt</span>Reset</button>
+        </div>
+
+        <div id="status"></div>
+      </div>
+
+      <div class="canvas-wrapper" id="canvasWrapper">
+        <span class="canvas-placeholder" id="canvasPlaceholder">Palette preview will appear here</span>
+        <canvas id="paletteCanvas" width="1600" height="900"></canvas>
+      </div>
+    </main>
+  </div>
+
+  <!-- ── Save name dialog ────────────────────────────────────── -->
+  <div class="dialog-overlay" id="dialogOverlay">
+    <div class="dialog-box">
+      <div class="dialog-title">Name this palette</div>
+      <input type="text" class="dialog-input" id="dialogInput" placeholder="e.g. Summer Vibes" maxlength="48" />
+      <div class="dialog-btns">
+        <button id="dialogCancelBtn">Cancel</button>
+        <button id="dialogConfirmBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Edit palette dialog ─────────────────────────────────── -->
+  <div class="dialog-overlay" id="editDialogOverlay">
+    <div class="dialog-box" style="width: 360px;">
+      <div class="dialog-title">Edit palette</div>
+      <input type="text" class="dialog-input" id="editDialogName" placeholder="Palette name" maxlength="48" />
+      <div id="editColorList" style="display:flex;flex-direction:column;gap:6px;max-height:260px;overflow-y:auto;padding-right:2px;"></div>
+      <button id="editAddColorBtn" style="background:#222;color:#aaa;font-size:0.78rem;padding:7px 12px;border-radius:6px;border:1px dashed #444;width:100%;justify-content:center;">
+        <span class="material-symbols-outlined" style="font-size:0.95rem;">add</span> Add color
+      </button>
+      <div class="dialog-btns">
+        <button id="editDialogCancelBtn">Cancel</button>
+        <button id="editDialogConfirmBtn">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════
+    //  Constants & DOM refs
+    // ═══════════════════════════════════════════════════════════
+    const CANVAS_W = 1600;
+    const CANVAS_H = 900;
+    const LS_KEY   = 'colorPaletteApp_savedPalettes';
+
+    const hexInput       = document.getElementById('hexInput');
+    const generateBtn    = document.getElementById('generateBtn');
+    const saveBtn        = document.getElementById('saveBtn');
+    const downloadBtn    = document.getElementById('downloadBtn');
+    const randomBtn      = document.getElementById('randomBtn');
+    const rollBtn        = document.getElementById('rollBtn');
+    const resetBtn       = document.getElementById('resetBtn');
+    const randomPopover  = document.getElementById('randomPopover');
+    const harmonySelect  = document.getElementById('harmonySelect');
+    const moodSelect     = document.getElementById('moodSelect');
+    const statusEl       = document.getElementById('status');
+    const canvas         = document.getElementById('paletteCanvas');
+    const placeholder    = document.getElementById('canvasPlaceholder');
+    const ctx            = canvas.getContext('2d');
+    const sidebarList    = document.getElementById('sidebarList');
+    const btnRow         = document.querySelector('.btn-row');
+    const sidebarEmpty   = document.getElementById('sidebarEmpty');
+    const exportBtn      = document.getElementById('exportBtn');
+    const importBtn      = document.getElementById('importBtn');
+    const importInput    = document.getElementById('importInput');
+    const dialogOverlay    = document.getElementById('dialogOverlay');
+    const dialogInput      = document.getElementById('dialogInput');
+    const dialogCancelBtn  = document.getElementById('dialogCancelBtn');
+    const dialogConfirmBtn = document.getElementById('dialogConfirmBtn');
+
+    const editDialogOverlay    = document.getElementById('editDialogOverlay');
+    const editDialogName       = document.getElementById('editDialogName');
+    const editColorList        = document.getElementById('editColorList');
+    const editAddColorBtn      = document.getElementById('editAddColorBtn');
+    const editDialogCancelBtn  = document.getElementById('editDialogCancelBtn');
+    const editDialogConfirmBtn = document.getElementById('editDialogConfirmBtn');
+
+    let editingId = null;
+
+    // Current rendered colors (for Save)
+    let currentColors = null;
+
+    // ═══════════════════════════════════════════════════════════
+    //  Helpers — general
+    // ═══════════════════════════════════════════════════════════
+
+    function setStatus(msg, isError = false) {
+      statusEl.textContent = msg;
+      statusEl.className = isError ? 'error' : '';
+    }
+
+    function isValidHex(h) {
+      return /^[0-9A-Fa-f]{3}$|^[0-9A-Fa-f]{6}$/.test(h);
+    }
+
+    function normalizeHex(h) {
+      if (h.length === 3) return h.split('').map(c => c + c).join('');
+      return h.toUpperCase();
+    }
+
+    async function fetchColor(hex) {
+      const res = await fetch(`https://www.thecolorapi.com/id?hex=${hex}`);
+      if (!res.ok) throw new Error(`API error for #${hex}`);
+      const data = await res.json();
+      return {
+        hex:       '#' + hex.toUpperCase(),
+        name:      data.name.value,
+        fill:      '#' + hex.toUpperCase(),
+        textColor: data.contrast.value
+      };
+    }
+
+    function fitFontSize(text, maxWidth, startSize, minSize, weight) {
+      let size = startSize;
+      while (size > minSize) {
+        ctx.font = `${weight} ${size}px Montserrat, sans-serif`;
+        if (ctx.measureText(text).width <= maxWidth) break;
+        size -= 1;
+      }
+      return size;
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  Canvas rendering
+    // ═══════════════════════════════════════════════════════════
+
+    function renderPalette(colors) {
+      const n       = colors.length;
+      const barW    = CANVAS_W / n;
+      const padding = barW * 0.08;
+
+      ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+
+      colors.forEach((color, i) => {
+        const x = i * barW;
+
+        ctx.fillStyle = color.fill;
+        ctx.fillRect(x, 0, barW, CANVAS_H);
+
+        const maxTextW = barW - padding * 2;
+        const nameSize = fitFontSize(color.name, maxTextW, Math.min(Math.floor(barW * 0.09), 64), 12, '600');
+        const hexSize  = fitFontSize(color.hex,  maxTextW, Math.min(Math.floor(barW * 0.075), 52), 10, '400');
+        const lineGap  = Math.max(nameSize * 0.35, 10);
+        const blockH   = nameSize + lineGap + hexSize;
+        const blockTop = (CANVAS_H - blockH) / 2;
+        const cx       = x + barW / 2;
+
+        ctx.textAlign    = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillStyle    = color.textColor;
+
+        ctx.font = `600 ${nameSize}px Montserrat, sans-serif`;
+        ctx.fillText(color.name, cx, blockTop, maxTextW);
+
+        ctx.font = `400 ${hexSize}px Montserrat, sans-serif`;
+        ctx.fillText(color.hex, cx, blockTop + nameSize + lineGap, maxTextW);
+      });
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  Generate
+    // ═══════════════════════════════════════════════════════════
+
+    async function generateFromHexLines(lines) {
+      const valid   = lines.filter(h => isValidHex(h));
+      const invalid = lines.filter(h => !isValidHex(h));
+
+      if (valid.length === 0) {
+        setStatus('No valid hex codes found. Use 3 or 6 hex digits.', true);
+        return;
+      }
+
+      if (invalid.length > 0) {
+        setStatus(`Skipping invalid: ${invalid.map(h => '#' + h).join(', ')}`, true);
+      } else {
+        setStatus('Fetching color names…');
+      }
+
+      generateBtn.disabled = true;
+      rollBtn.disabled     = true;
+      saveBtn.classList.remove('visible');
+      downloadBtn.classList.remove('visible');
+      btnRow.classList.remove('has-results');      placeholder.style.display = 'none';
+      canvas.classList.remove('visible');
+      btnRow.classList.remove('has-results');
+      currentColors = null;
+
+      try {
+        const normalized = valid.map(normalizeHex);
+        const colors = await Promise.all(normalized.map(fetchColor));
+
+        setStatus(invalid.length > 0
+          ? `Generated with ${colors.length} color${colors.length > 1 ? 's' : ''} (${invalid.length} skipped).`
+          : `Generated ${colors.length} color${colors.length > 1 ? 's' : ''}.`
+        );
+
+        await document.fonts.load('600 40px Montserrat');
+        await document.fonts.load('400 40px Montserrat');
+
+        renderPalette(colors);
+        currentColors = colors;
+
+        canvas.classList.add('visible');
+        downloadBtn.classList.add('visible');
+        saveBtn.classList.add('visible');
+        btnRow.classList.add('has-results');
+
+      } catch (err) {
+        console.error(err);
+        setStatus('Failed to fetch color data. Check your connection and try again.', true);
+        placeholder.style.display = '';
+      } finally {
+        generateBtn.disabled = false;
+        rollBtn.disabled     = false;
+      }
+    }
+
+    generateBtn.addEventListener('click', () => {
+      const lines = hexInput.value
+        .split('\n')
+        .map(l => l.trim().replace(/^#/, ''))
+        .filter(l => l.length > 0);
+
+      if (lines.length === 0) {
+        setStatus('Paste at least one hex code.', true);
+        return;
+      }
+      generateFromHexLines(lines);
+    });
+
+    // ═══════════════════════════════════════════════════════════
+    //  Download
+    // ═══════════════════════════════════════════════════════════
+
+    downloadBtn.addEventListener('click', () => {
+      const currentHexes = (currentColors || []).map(c => c.hex.toUpperCase());
+      const saved = loadSaved();
+      const match = saved.find(p =>
+        p.colors.length === currentHexes.length &&
+        p.colors.every((c, i) => c.hex.toUpperCase() === currentHexes[i])
+      );
+      const slug = match
+        ? match.name.trim().replace(/\s+/g, '_') + '_palette'
+        : 'palette';
+
+      const a = document.createElement('a');
+      a.download = slug.toLowerCase() + '.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    });
+
+    // ═══════════════════════════════════════════════════════════
+    //  Reset
+    // ═══════════════════════════════════════════════════════════
+
+    resetBtn.addEventListener('click', () => {
+      hexInput.value = '';
+      currentColors  = null;
+      canvas.classList.remove('visible');
+      placeholder.style.display = '';
+      downloadBtn.classList.remove('visible');
+      saveBtn.classList.remove('visible');
+      btnRow.classList.remove('has-results');
+      setStatus('');
+    });
+
+    // ═══════════════════════════════════════════════════════════
+    //  Color math — HSL helpers
+    // ═══════════════════════════════════════════════════════════
+
+    function hslToHex(h, s, l) {
+      // Normalize h to [0,360)
+      h = ((h % 360) + 360) % 360;
+      s = Math.max(0, Math.min(100, s));
+      l = Math.max(0, Math.min(100, l));
+
+      const sn = s / 100, ln = l / 100;
+      const c  = (1 - Math.abs(2 * ln - 1)) * sn;
+      const x  = c * (1 - Math.abs((h / 60) % 2 - 1));
+      const m  = ln - c / 2;
+
+      let r = 0, g = 0, b = 0;
+      if      (h < 60)  { r = c; g = x; b = 0; }
+      else if (h < 120) { r = x; g = c; b = 0; }
+      else if (h < 180) { r = 0; g = c; b = x; }
+      else if (h < 240) { r = 0; g = x; b = c; }
+      else if (h < 300) { r = x; g = 0; b = c; }
+      else              { r = c; g = 0; b = x; }
+
+      const toHex = v => Math.round((v + m) * 255).toString(16).padStart(2, '0');
+      return (toHex(r) + toHex(g) + toHex(b)).toUpperCase();
+    }
+
+    function randBetween(a, b) {
+      return a + Math.random() * (b - a);
+    }
+
+    function randInt(a, b) {
+      return Math.floor(randBetween(a, b + 1));
+    }
+
+    // ─── Mood constraints ──────────────────────────────────────
+    const MOOD_PARAMS = {
+      none:  { sMin: 40, sMax: 90,  lMin: 30, lMax: 70  },
+      warm:  { sMin: 55, sMax: 100, lMin: 35, lMax: 65,  hueRange: [0, 60]   },
+      cool:  { sMin: 40, sMax: 85,  lMin: 30, lMax: 65,  hueRange: [180, 270] },
+      pastel:{ sMin: 25, sMax: 55,  lMin: 70, lMax: 88  },
+      earthy:{ sMin: 20, sMax: 55,  lMin: 25, lMax: 55,  hueRange: [20, 80]  },
+      neon:  { sMin: 85, sMax: 100, lMin: 50, lMax: 65  },
+    };
+
+    // ─── Harmony hue offsets ───────────────────────────────────
+    function harmonyOffsets(harmony, count) {
+      switch (harmony) {
+        case 'complementary':
+          // Two anchor hues (0 and 180), fill rest near them
+          return Array.from({ length: count }, (_, i) =>
+            i % 2 === 0 ? randBetween(-15, 15) : 180 + randBetween(-15, 15)
+          );
+
+        case 'triadic':
+          return Array.from({ length: count }, (_, i) =>
+            (i % 3) * 120 + randBetween(-12, 12)
+          );
+
+        case 'split-complementary':
+          // Base + two colors 150° and 210° away
+          return Array.from({ length: count }, (_, i) => {
+            const anchors = [0, 150, 210];
+            return anchors[i % 3] + randBetween(-12, 12);
+          });
+
+        case 'tetradic':
+          return Array.from({ length: count }, (_, i) =>
+            (i % 4) * 90 + randBetween(-12, 12)
+          );
+
+        case 'monochromatic':
+          // All at the same hue, vary lightness/sat in the generator
+          return Array.from({ length: count }, () => randBetween(-8, 8));
+
+        case 'analogous':
+        default:
+          // Colors spread across ~90° range
+          return Array.from({ length: count }, (_, i) =>
+            (i / Math.max(count - 1, 1)) * 90 - 45 + randBetween(-8, 8)
+          );
+      }
+    }
+
+    // ─── Main random generator ─────────────────────────────────
+    function generateRandomHexes(harmony, mood) {
+      const count    = randInt(4, 7);
+      const mp       = MOOD_PARAMS[mood] || MOOD_PARAMS.none;
+      const offsets  = harmonyOffsets(harmony, count);
+
+      // Pick a base hue, optionally constrained by mood
+      let baseHue;
+      if (mp.hueRange) {
+        baseHue = randBetween(mp.hueRange[0], mp.hueRange[1]);
+      } else {
+        baseHue = randBetween(0, 360);
+      }
+
+      // For monochromatic: spread lightness deliberately
+      const isMono = harmony === 'monochromatic';
+
+      return offsets.map((offset, i) => {
+        const hue = baseHue + offset;
+        let s, l;
+
+        if (isMono) {
+          s = randBetween(mp.sMin, mp.sMax);
+          // Spread lightness evenly across the range
+          const lSpread = mp.lMax - mp.lMin;
+          l = mp.lMin + (i / Math.max(count - 1, 1)) * lSpread + randBetween(-5, 5);
+        } else {
+          s = randBetween(mp.sMin, mp.sMax);
+          l = randBetween(mp.lMin, mp.lMax);
+        }
+
+        return hslToHex(hue, s, l);
+      });
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  Random button & popover
+    // ═══════════════════════════════════════════════════════════
+
+    randomBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      randomPopover.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!randomPopover.contains(e.target) && e.target !== randomBtn) {
+        randomPopover.classList.remove('open');
+      }
+    });
+
+    rollBtn.addEventListener('click', () => {
+      randomPopover.classList.remove('open');
+
+      const harmony = harmonySelect.value;
+      const mood    = moodSelect.value;
+      const hexes   = generateRandomHexes(harmony, mood);
+
+      hexInput.value = hexes.map(h => '#' + h).join('\n');
+      generateFromHexLines(hexes);
+    });
+
+    // ═══════════════════════════════════════════════════════════
+    //  Palette memory — localStorage
+    // ═══════════════════════════════════════════════════════════
+
+    function loadSaved() {
+      try {
+        return JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+      } catch {
+        return [];
+      }
+    }
+
+    function persistSaved(list) {
+      localStorage.setItem(LS_KEY, JSON.stringify(list));
+    }
+
+    function formatDate(iso) {
+      const d = new Date(iso);
+      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function renderSidebar() {
+      const list = loadSaved();
+
+      // Clear everything except the empty notice
+      [...sidebarList.querySelectorAll('.palette-card')].forEach(el => el.remove());
+
+      if (list.length === 0) {
+        sidebarEmpty.style.display = '';
+        return;
+      }
+
+      sidebarEmpty.style.display = 'none';
+
+      // Newest first
+      [...list].reverse().forEach(entry => {
+        const card = document.createElement('div');
+        card.className = 'palette-card';
+        card.dataset.id = entry.id;
+
+        // Swatch strip
+        const strip = document.createElement('div');
+        strip.className = 'swatch-strip';
+        entry.colors.forEach(c => {
+          const sw = document.createElement('div');
+          sw.className = 'swatch';
+          sw.style.background = c.hex;
+          strip.appendChild(sw);
+        });
+
+        // Top row: name + action buttons
+        const top = document.createElement('div');
+        top.className = 'palette-card-top';
+
+        const nameEl = document.createElement('div');
+        nameEl.className = 'palette-card-name';
+        nameEl.textContent = entry.name;
+
+        const actions = document.createElement('div');
+        actions.className = 'palette-card-actions';
+
+        const editIconBtn = document.createElement('button');
+        editIconBtn.className = 'icon-btn';
+        editIconBtn.title = 'Edit palette';
+        editIconBtn.innerHTML = '<span class="material-symbols-outlined">edit</span>';
+        editIconBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openEditDialog(entry.id);
+        });
+
+        const delIconBtn = document.createElement('button');
+        delIconBtn.className = 'icon-btn';
+        delIconBtn.title = 'Delete palette';
+        delIconBtn.innerHTML = '<span class="material-symbols-outlined">delete</span>';
+        delIconBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          deletePalette(entry.id);
+        });
+
+        actions.appendChild(editIconBtn);
+        actions.appendChild(delIconBtn);
+        top.appendChild(nameEl);
+        top.appendChild(actions);
+
+        const dateEl = document.createElement('div');
+        dateEl.className = 'palette-card-date';
+        dateEl.textContent = formatDate(entry.savedAt);
+
+        card.appendChild(top);
+        card.appendChild(strip);
+        card.appendChild(dateEl);
+
+        // Clicking the card body also loads
+        card.addEventListener('click', () => loadPalette(entry.id));
+
+        sidebarList.appendChild(card);
+      });
+    }
+
+    function loadPalette(id) {
+      const list  = loadSaved();
+      const entry = list.find(p => p.id === id);
+      if (!entry) return;
+
+      hexInput.value = entry.colors.map(c => c.hex).join('\n');
+
+      // Auto-render
+      generateFromHexLines(entry.colors.map(c => c.hex.replace(/^#/, '')));
+    }
+
+    function deletePalette(id) {
+      const list = loadSaved().filter(p => p.id !== id);
+      persistSaved(list);
+      renderSidebar();
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  Save dialog
+    // ═══════════════════════════════════════════════════════════
+
+    function openSaveDialog() {
+      const now = new Date();
+      const defaultName = `Palette ${now.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`;
+      dialogInput.value = defaultName;
+      dialogOverlay.classList.add('open');
+      // Select all so the user can just type a new name
+      requestAnimationFrame(() => {
+        dialogInput.focus();
+        dialogInput.select();
+      });
+    }
+
+    function closeSaveDialog() {
+      dialogOverlay.classList.remove('open');
+    }
+
+    function confirmSave() {
+      if (!currentColors) return;
+      const name = dialogInput.value.trim() || 'Untitled Palette';
+      const list = loadSaved();
+      list.push({
+        id:      crypto.randomUUID(),
+        name,
+        savedAt: new Date().toISOString(),
+        colors:  currentColors.map(c => ({ hex: c.hex, name: c.name }))
+      });
+      persistSaved(list);
+      renderSidebar();
+      closeSaveDialog();
+      setStatus(`Saved as "${name}".`);
+    }
+
+    saveBtn.addEventListener('click', openSaveDialog);
+    dialogCancelBtn.addEventListener('click', closeSaveDialog);
+    dialogConfirmBtn.addEventListener('click', confirmSave);
+
+    dialogOverlay.addEventListener('click', (e) => {
+      if (e.target === dialogOverlay) closeSaveDialog();
+    });
+
+    dialogInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') confirmSave();
+      if (e.key === 'Escape') closeSaveDialog();
+    });
+
+    // ═══════════════════════════════════════════════════════════
+    //  Edit palette dialog
+    // ═══════════════════════════════════════════════════════════
+
+    function buildEditColorRow(hex) {
+      const row = document.createElement('div');
+      row.className = 'edit-color-row';
+
+      const swatch = document.createElement('div');
+      swatch.className = 'edit-swatch';
+      swatch.style.background = hex;
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'edit-hex-input';
+      input.value = hex;
+      input.maxLength = 7;
+      input.spellcheck = false;
+
+      input.addEventListener('input', () => {
+        const raw = input.value.trim().replace(/^#/, '');
+        if (/^[0-9A-Fa-f]{6}$/.test(raw)) {
+          swatch.style.background = '#' + raw;
+          input.classList.remove('invalid');
+        } else {
+          input.classList.add('invalid');
+        }
+      });
+
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'edit-remove-btn';
+      removeBtn.title = 'Remove color';
+      removeBtn.innerHTML = '<span class="material-symbols-outlined">close</span>';
+      removeBtn.addEventListener('click', () => row.remove());
+
+      row.appendChild(swatch);
+      row.appendChild(input);
+      row.appendChild(removeBtn);
+      return row;
+    }
+
+    function openEditDialog(id) {
+      const list  = loadSaved();
+      const entry = list.find(p => p.id === id);
+      if (!entry) return;
+
+      editingId = id;
+      editDialogName.value = entry.name;
+      editColorList.innerHTML = '';
+      entry.colors.forEach(c => {
+        editColorList.appendChild(buildEditColorRow(c.hex));
+      });
+
+      editDialogOverlay.classList.add('open');
+      requestAnimationFrame(() => editDialogName.focus());
+    }
+
+    function closeEditDialog() {
+      editDialogOverlay.classList.remove('open');
+      editingId = null;
+    }
+
+    function confirmEdit() {
+      const rows   = [...editColorList.querySelectorAll('.edit-color-row')];
+      const colors = [];
+
+      for (const row of rows) {
+        const raw = row.querySelector('.edit-hex-input').value.trim().replace(/^#/, '');
+        if (!/^[0-9A-Fa-f]{6}$/.test(raw)) {
+          row.querySelector('.edit-hex-input').classList.add('invalid');
+          return; // block save if any hex is invalid
+        }
+        colors.push({ hex: '#' + raw.toUpperCase(), name: '' });
+      }
+
+      if (colors.length === 0) return;
+
+      const name = editDialogName.value.trim() || 'Untitled Palette';
+      const list = loadSaved().map(p =>
+        p.id === editingId ? { ...p, name, colors } : p
+      );
+      persistSaved(list);
+      renderSidebar();
+      closeEditDialog();
+      setStatus(`"${name}" updated.`);
+    }
+
+    editAddColorBtn.addEventListener('click', () => {
+      editColorList.appendChild(buildEditColorRow('#000000'));
+      // scroll to bottom so new row is visible
+      editColorList.scrollTop = editColorList.scrollHeight;
+    });
+
+    editDialogCancelBtn.addEventListener('click', closeEditDialog);
+    editDialogConfirmBtn.addEventListener('click', confirmEdit);
+    editDialogOverlay.addEventListener('click', (e) => {
+      if (e.target === editDialogOverlay) closeEditDialog();
+    });
+    editDialogName.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeEditDialog();
+    });
+
+    // ═══════════════════════════════════════════════════════════
+    //  Export / Import
+    // ═══════════════════════════════════════════════════════════
+
+    exportBtn.addEventListener('click', () => {
+      const list = loadSaved();
+      if (list.length === 0) {
+        setStatus('Nothing to export — save some palettes first.', true);
+        return;
+      }
+      const blob = new Blob([JSON.stringify(list, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.download = 'palettes.json';
+      a.href = URL.createObjectURL(blob);
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    importBtn.addEventListener('click', () => importInput.click());
+
+    importInput.addEventListener('change', () => {
+      const file = importInput.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const incoming = JSON.parse(e.target.result);
+          if (!Array.isArray(incoming)) throw new Error('Not an array');
+
+          const existing = loadSaved();
+          const existingIds = new Set(existing.map(p => p.id));
+
+          // Merge: skip duplicates by id, validate minimal shape
+          const toAdd = incoming.filter(p =>
+            p && p.id && p.name && Array.isArray(p.colors) && !existingIds.has(p.id)
+          );
+
+          persistSaved([...existing, ...toAdd]);
+          renderSidebar();
+          setStatus(`Imported ${toAdd.length} palette${toAdd.length !== 1 ? 's' : ''}.`);
+        } catch {
+          setStatus('Import failed — invalid palettes.json file.', true);
+        } finally {
+          importInput.value = '';
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    // ═══════════════════════════════════════════════════════════
+    //  Init
+    // ═══════════════════════════════════════════════════════════
+
+    renderSidebar();
+  </script>
+
+</body>
+</html>
